@@ -576,6 +576,24 @@ function backToPhone(){
 
 }
 
+
+
+// Redirect PC users to home page
+if(window.innerWidth > 768){
+    window.location.href="../index.html";
+}
+
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth > 768){
+        window.location.href="../index.html";
+    }
+
+});
+
+
+
+
 </script>
 </body>
 </html>
