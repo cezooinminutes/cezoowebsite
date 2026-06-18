@@ -1,0 +1,3794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEZOO</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#ffffff;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    overflow-y:auto;
+    padding-top:100px;
+}
+
+/* NAVBAR */
+.navbar{
+    width:100%;
+    height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+}
+
+/* LEFT LOGO SECTION */
+.brand{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-left:10px;
+    padding-right:20px;
+    border-right:1px solid #dcdcdc;
+}
+
+.brand-name{
+    font-family:'Bungee', cursive;
+    font-size:58px;
+    line-height:0.85;
+    color:#22c55e;
+}
+
+.brand-tagline{
+    margin-top:4px;
+    margin-left:8px; /* push right */
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#666;
+}
+
+/* RIGHT SIDE */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    margin-right:25px;
+}
+
+.login-btn{
+    text-decoration:none;
+    color:#111;
+    font-size:18px;
+    font-weight:600;
+}
+
+.cart-btn{
+    text-decoration:none;
+    background:#22c55e;
+    color:#fff;
+    padding:12px 24px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:700;
+}
+.navbar{
+    width:100%;
+    height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* SEARCH */
+.search-container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    padding:0 30px;
+}
+
+.search-bar{
+    width:100%;
+    max-width:600px;
+    height:48px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:0 18px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-bar:focus{
+    border-color:#22c55e;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-wrap:wrap;
+        min-height:auto;
+        height:auto;
+        padding:10px;
+    }
+    .brand-name{
+        font-size:38px;
+    }
+
+    .brand-tagline{
+    font-size:11px;
+    margin-left:2px;
+}
+
+    .nav-right{
+        display:none;
+    }
+
+   .profile-icon{
+    display:block !important;
+    font-size:32px;
+    color:#22c55e;
+    margin-left:auto;
+}
+
+    .brand{
+        border-right:none;
+    }
+
+    .search-container{
+        flex:0 0 100%;
+        width:100%;
+        order:99;
+        margin-top:12px;
+        padding:0;
+    }
+
+    .search-bar{
+        width:100%;
+        max-width:none;
+    }
+}
+
+.profile-icon{ display:none; 
+    text-decoration:none; 
+    color:#22c55e; 
+    font-size:30px;
+margin-right:15px; }
+.sticky-category{
+    width:80%;
+    max-width:1400px;
+    margin:0 auto;
+
+    background:#fff;
+
+    padding:15px 20px;
+
+    font-size:18px;
+    font-weight:700;
+    color:#222;
+
+    border-left:1px solid #e5e5e5;
+    border-right:1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
+
+    border-radius:0 0 12px 12px;
+
+    position:fixed;
+    top:100px;
+    left:50%;
+    transform:translateX(-50%);
+
+    z-index:999;
+}
+
+@media(max-width:768px){
+    .sticky-category{
+        width:95%;
+        top:130px;
+    }
+}
+.catalog-layout{
+    width:80%;
+    max-width:1400px;
+    margin:10px auto 0;
+
+    display:flex;
+
+    height:calc(100vh - 150px);
+    overflow-y:auto;
+
+    position:relative;
+}
+.products-area{
+    margin-left:20px;   /* NOT 150px */
+    margin-top:50px;
+    flex:1;
+
+    padding-bottom:100px;
+}
+.products-area::-webkit-scrollbar,
+.left-menu::-webkit-scrollbar{
+    width:6px;
+}
+
+.products-area::-webkit-scrollbar-thumb,
+.left-menu::-webkit-scrollbar-thumb{
+    background:#ddd;
+    border-radius:10px;
+}
+.products-area::-webkit-scrollbar{
+    display:none;
+}
+
+.products-area{
+    scrollbar-width:none;
+}
+@media(max-width:768px){
+
+    .products-area{
+        margin-left:15px;
+        margin-top:20px;
+        flex:1;
+    }
+
+}
+.left-menu{
+    width:130px;
+    flex-shrink:0;
+
+    position:sticky;
+    top:25px;
+
+    height:fit-content;
+}
+.left-menu::-webkit-scrollbar{
+    display:none;
+}
+
+.left-menu{
+    scrollbar-width:none;
+}
+.menu-item{
+    padding:18px 8px;
+    text-align:center;
+    border-bottom:1px solid #e5e5e5;
+}
+
+.menu-item img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto;
+}
+
+.menu-item span{
+    display:block;
+    margin-top:8px;
+    font-size:13px;
+    font-weight:600;
+    line-height:1.3;
+}
+
+@media(max-width:768px){
+
+     .catalog-layout{
+        width:95%;
+        margin-top:70px;
+
+        height:calc(100vh - 185px);
+        overflow-y:auto;
+        overflow-x:hidden;
+
+        scrollbar-width:none;
+    }
+
+   .left-menu{
+        width:95px;
+        top:0;
+        height:auto;
+        overflow:visible;
+        flex-shrink:0;
+   }
+
+    .products-area{
+        flex:1;
+        min-width:0;
+        width:0;              /* ADD THIS */
+        margin-left:10px;     /* ADD THIS */
+    }
+
+    .products-grid{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .product-card{
+        min-width:0;          /* ADD THIS */
+        width:100%;           /* ADD THIS */
+    }
+
+    .menu-item{
+        padding:14px 5px;
+    }
+
+    .menu-item img{
+        width:55px;
+        height:55px;
+    }
+
+    .menu-item span{
+        font-size:11px;
+    }
+}
+/* Product Grid */
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:15px;
+}
+
+/* Product Card */
+.product-card{
+    border:1px solid #e5e5e5;
+    border-radius:12px;
+    padding:12px;
+    background:#fff;
+}
+
+/* Product Image */
+.product-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:contain;
+}
+
+/* Product Name */
+.product-name{
+    font-size:14px;
+    font-weight:600;
+    margin-top:8px;
+}
+
+/* Quantity */
+.product-qty{
+    font-size:12px;
+    font-weight:600;
+    color:#666;
+    white-space:nowrap;
+
+    margin-top:9px;
+}
+/* Rating */
+.product-rating{
+    font-size:12px;
+    margin-top:6px;
+}
+
+/* Prices */
+.product-price{
+    margin-top:8px;
+}
+
+.original-price{
+    text-decoration:line-through;
+    color:#888;
+    font-size:12px;
+}
+
+.discount-price{
+    font-size:16px;
+    font-weight:700;
+}
+
+/* Add Button */
+.add-btn{
+    width:100%;
+    margin-top:10px;
+    padding:8px;
+    border:1px solid #ccc;
+    background:#fff;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    .products-grid{
+        grid-template-columns:repeat(2, 1fr);
+        gap:10px;
+    }
+
+    .product-card{
+        padding:10px;
+    }
+
+    .product-name{
+        font-size:13px;
+    }
+
+    .discount-price{
+        font-size:14px;
+    }
+
+    .add-btn{
+        padding:7px;
+    }
+}
+.seo-content{
+    max-width:900px;
+    margin:40px auto 0;
+}
+
+
+
+.seo-content p{
+    font-size:15px;
+    line-height:1.9;
+    color:#555;
+    margin-bottom:18px;
+    text-align:left;
+}
+
+@media(max-width:768px){
+
+    .seo-content{
+        max-width:900px; /* same as desktop */
+        margin:30px auto 0;
+
+        padding-left:25px;
+        padding-right:25px;
+    }
+
+    
+
+    .seo-content p{
+        font-size:14px;
+        line-height:1.8;
+    }
+
+}
+.skeleton{
+    animation: shimmer 1.5s infinite linear;
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e5e5e5 50%,
+        #f0f0f0 75%
+    );
+    background-size: 1000px 100%;
+}
+
+.skeleton-card{
+    border:1px solid #e5e5e5;
+    border-radius:12px;
+    padding:12px;
+}
+
+.skeleton-img{
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:8px;
+}
+
+.skeleton-line{
+    height:12px;
+    border-radius:6px;
+    margin-top:10px;
+}
+
+.skeleton-line.short{
+    width:60%;
+}
+
+@keyframes shimmer{
+    0%{
+        background-position:-1000px 0;
+    }
+    100%{
+        background-position:1000px 0;
+    }
+}
+.lazy-image{
+    background:#f3f3f3;
+}
+
+.lazy-image.loading{
+    animation: shimmer 1.5s infinite linear;
+}
+.product-modal{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    padding:20px;
+}
+
+.product-modal-content{
+    width:95%;
+
+    max-width:1400px; /* was 1000px */
+
+    background:#fff;
+
+    border-radius:24px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    padding:30px;
+
+    position:relative;
+}
+.close-modal{
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f3f4f6;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:24px;
+    font-weight:700;
+}
+
+/* DESKTOP */
+
+.popup-layout{
+    display:grid;
+
+    grid-template-columns:
+    420px 1fr;
+
+    gap:35px;
+}
+
+/* LEFT */
+
+.popup-slider{
+    display:flex;
+
+    overflow-x:auto;
+
+    scroll-snap-type:x mandatory;
+
+    scrollbar-width:none;
+
+    border-radius:18px;
+}
+
+.popup-slider::-webkit-scrollbar{
+    display:none;
+}
+
+.popup-slide{
+    min-width:100%;
+
+    scroll-snap-align:start;
+}
+
+.popup-slide img{
+    width:100%;
+    height:380px;
+
+    object-fit:contain;
+
+    background:#fafafa;
+
+    border-radius:18px;
+
+    padding:15px;
+}
+
+/* DOTS */
+
+.slider-dots{
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:15px;
+}
+
+.slider-dot{
+    width:8px;
+    height:8px;
+
+    border-radius:20px;
+
+    background:#d1d5db;
+
+    transition:.25s;
+}
+
+.slider-dot.active{
+    width:28px;
+
+    background:#22c55e;
+}
+
+/* RIGHT */
+
+.popup-product-name{
+    font-size:32px;
+    font-weight:700;
+
+    color:#111;
+
+    line-height:1.4;
+
+    margin-top:10px;
+}
+
+.popup-short-desc{
+    margin-top:10px;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#6b7280;
+
+    max-width:500px;
+}
+
+@media(max-width:768px){
+
+    .popup-product-name{
+        font-size:22px;
+    }
+
+    .popup-short-desc{
+        font-size:14px;
+        line-height:1.7;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .product-modal{
+        align-items:flex-end;
+        padding:0;
+    }
+
+    .product-modal-content{
+        width:100%;
+
+        height:92vh;
+
+        max-width:none;
+        max-height:none;
+
+        border-radius:
+        24px 24px 0 0;
+
+        padding:16px;
+    }
+
+    .popup-layout{
+        display:block;
+    }
+
+    .popup-slide img{
+        height:280px;
+    }
+
+    .popup-product-name{
+        font-size:22px;
+
+        margin-top:15px;
+    }
+
+    .slider-dot.active{
+        width:24px;
+    }
+}
+.popup-quantity{
+    margin-top:14px;
+
+    display:inline-flex;
+    align-items:center;
+
+    padding:8px 14px;
+
+    background:#f3f4f6;
+
+    border-radius:10px;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:#374151;
+}
+
+@media(max-width:768px){
+
+    .popup-quantity{
+        margin-top:12px;
+
+        font-size:13px;
+
+        padding:7px 12px;
+    }
+
+}
+.popup-price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-top:16px;
+}
+
+.popup-price-left{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+}
+
+/* Discount Price */
+
+.popup-discount-price{
+    font-size:26px;
+    font-weight:700;
+
+    color:#111;
+
+    line-height:1;
+}
+
+/* Original Price */
+
+.popup-original-price{
+    font-size:15px;
+
+    color:#9ca3af;
+
+    text-decoration:line-through;
+
+    line-height:1.2;
+
+    margin-bottom:2px;
+}
+
+/* ADD Button */
+
+.popup-add-btn{
+    min-width:110px;
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#22c55e;
+    color:#fff;
+
+    font-size:14px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+.popup-add-btn:hover{
+    background:#16a34a;
+}
+
+.popup-add-btn:active{
+    transform:scale(.97);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .popup-price-row{
+        margin-top:14px;
+    }
+
+    .popup-price-left{
+        gap:8px;
+    }
+
+    .popup-discount-price{
+        font-size:22px;
+    }
+
+    .popup-original-price{
+        font-size:13px;
+    }
+
+    .popup-add-btn{
+        min-width:90px;
+        height:38px;
+
+        font-size:13px;
+
+        border-radius:8px;
+    }
+}
+/* WHY CEZOO */
+
+.why-cezoo{
+    margin-top:35px;
+
+    padding-top:25px;
+
+    border-top:1px solid #e5e7eb;
+}
+
+.why-title{
+    font-size:22px;
+    font-weight:700;
+
+    color:#111;
+
+    margin-bottom:25px;
+}
+
+.why-item{
+    display:flex;
+    align-items:flex-start;
+
+    gap:16px;
+
+    margin-bottom:22px;
+}
+
+.why-item img{
+    width:52px;
+    height:52px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+}
+
+.why-heading{
+    font-size:15px;
+    font-weight:700;
+
+    color:#111;
+
+    margin-bottom:4px;
+}
+
+.why-text{
+    font-size:14px;
+
+    color:#6b7280;
+
+    line-height:1.7;
+}
+
+/* HIDE ON MOBILE */
+
+@media(max-width:768px){
+
+    .why-cezoo{
+        display:none;
+    }
+
+}
+.product-details-mobile{
+    display:block;
+
+    margin-top:25px;
+
+    max-width:420px; /* same width as image area */
+}
+
+.product-details-heading{
+    font-size:18px;
+    font-weight:700;
+
+    color:#111;
+
+    margin-bottom:12px;
+}
+
+.product-details-content{
+    color:#6b7280;
+
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* DESKTOP ONLY */
+@media(min-width:769px){
+
+    .product-details-mobile{
+        margin-left:-400px; /* push more left */
+    }
+
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .product-details-mobile{
+        margin-left:0;
+        max-width:100%;
+    }
+
+    .product-details-heading{
+        font-size:17px;
+        margin-top:22px;
+        margin-bottom:10px;
+    }
+
+}
+.ingredients-section{
+    margin-top:30px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    overflow:hidden;
+}
+
+/* PUSH LEFT ON DESKTOP */
+
+@media(min-width:769px){
+
+    .ingredients-section{
+
+        margin-left:-400px;
+
+        width:calc(100% + 300px);
+    }
+
+}
+
+.ingredients-heading{
+    font-size:18px;
+    font-weight:700;
+
+    color:#111;
+
+    padding:16px 18px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    background:#fafafa;
+}
+
+.ingredients-table{
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.ingredients-table tr{
+    border-bottom:1px solid #e5e7eb;
+}
+
+.ingredients-table tr:last-child{
+    border-bottom:none;
+}
+
+.ingredients-table td{
+    padding:14px 18px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    vertical-align:top;
+}
+
+.ingredients-table td:first-child{
+    width:45%;
+
+    font-weight:600;
+
+    color:#111;
+}
+
+.ingredients-table td:last-child{
+    color:#6b7280;
+
+    text-align:right;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .ingredients-section{
+        margin-top:24px;
+
+        margin-left:0;
+
+        width:100%;
+
+        border-radius:12px;
+    }
+
+    .ingredients-heading{
+        font-size:17px;
+
+        padding:14px 16px;
+    }
+
+    .ingredients-table td{
+        padding:12px 16px;
+
+        font-size:13px;
+    }
+
+    .ingredients-table td:first-child{
+        width:50%;
+    }
+
+}
+.card-rating{
+    display:flex;
+    align-items:center;
+    gap:4px;
+
+    font-size:13px;
+    font-weight:600;
+
+    color:#16a34a;
+
+    margin-top:-4px;
+}
+
+.card-rating i{
+    font-size:12px;
+    color:#facc15;
+}
+
+.rating-count{
+    color:#6b7280;
+
+    font-size:11px;
+    font-weight:500;
+}
+
+@media(max-width:768px){
+
+    .card-rating{
+        font-size:12px;
+    }
+
+    .card-rating i{
+        font-size:11px;
+    }
+
+    .rating-count{
+        font-size:10px;
+    }
+
+}
+.seller-section{
+    margin-top:30px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    overflow:hidden;
+}
+
+/* DESKTOP */
+
+@media(min-width:769px){
+
+    .seller-section{
+        margin-left:-400px;
+
+        width:calc(100% + 300px);
+    }
+
+}
+
+.seller-heading{
+    font-size:18px;
+    font-weight:700;
+
+    color:#111;
+
+    padding:16px 18px;
+
+    background:#fafafa;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+.seller-table{
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.seller-table tr{
+    border-bottom:1px solid #e5e7eb;
+}
+
+.seller-table tr:last-child{
+    border-bottom:none;
+}
+
+.seller-table td{
+    padding:14px 18px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    vertical-align:top;
+}
+
+.seller-table td:first-child{
+    width:180px;
+
+    font-weight:600;
+
+    color:#111;
+}
+
+.seller-table td:last-child{
+    color:#6b7280;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .seller-section{
+        margin-top:24px;
+
+        margin-left:0;
+
+        width:100%;
+    }
+
+    .seller-heading{
+        font-size:17px;
+
+        padding:14px 16px;
+    }
+
+    .seller-table td{
+        padding:12px 16px;
+
+        font-size:13px;
+    }
+
+    .seller-table td:first-child{
+        width:120px;
+    }
+
+}
+.additional-section{
+    margin-top:30px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    overflow:hidden;
+}
+
+/* DESKTOP */
+
+@media(min-width:769px){
+
+    .additional-section{
+        margin-left:-400px;
+
+        width:calc(100% + 300px);
+    }
+
+}
+
+.additional-heading{
+    font-size:18px;
+    font-weight:700;
+
+    color:#111;
+
+    padding:16px 18px;
+
+    background:#fafafa;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+.additional-content{
+    padding:18px;
+
+    font-size:14px;
+
+    line-height:1.9;
+
+    color:#6b7280;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .additional-section{
+        margin-top:24px;
+
+        margin-left:0;
+
+        width:100%;
+    }
+
+    .additional-heading{
+        font-size:17px;
+
+        padding:14px 16px;
+    }
+
+    .additional-content{
+        padding:16px;
+
+        font-size:13px;
+
+        line-height:1.8;
+    }
+
+}
+.buy-now-section{
+    margin-top:35px;
+}
+
+/* DESKTOP */
+
+.popup-buy-btn{
+    width:320px;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    font-size:17px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.popup-buy-btn:hover{
+    background:#16a34a;
+
+    transform:translateY(-2px);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .buy-now-section{
+        margin-top:24px;
+    }
+
+    .popup-buy-btn{
+        width:100%;
+
+        height:48px;
+
+        font-size:15px;
+
+        border-radius:10px;
+    }
+
+}
+.popup-brand-name{
+    margin-top:6px;
+    font-size:14px;
+    font-weight:600;
+    color:#6b7280;
+}
+
+@media(max-width:768px){
+    .popup-brand-name{
+        font-size:13px;
+    }
+}
+.product-top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-top:10px;
+    gap:8px;
+}
+
+.product-brand{
+    font-size:12px;
+    color:#777;
+    margin-top:3px;
+}
+
+.product-qty{
+    font-size:12px;
+    font-weight:600;
+    color:#666;
+    white-space:nowrap;
+}
+
+.product-middle-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:10px;
+}
+
+.price-wrap{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.discount-price{
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+}
+
+.original-price{
+    font-size:12px;
+    color:#999;
+    text-decoration:line-through;
+}
+
+.product-rating{
+    font-size:12px;
+    font-weight:600;
+}
+
+.add-btn-full{
+    width:100%;
+    height:38px;
+
+    margin-top:12px;
+
+    border:1px solid #dcdcdc;
+    background:#fff;
+    color:#111;
+
+    border-radius:8px;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+.qty-box{
+    display:none;
+
+    width:100%;
+    height:38px;
+
+    margin-top:12px; /* push down */
+
+    background:#22c55e;
+
+    border-radius:8px;
+
+    align-items:center;
+    justify-content:space-between;
+
+    overflow:hidden;
+}
+
+.minus-btn,
+.plus-btn{
+    width:38px;
+    height:100%;
+
+    border:none;
+    background:none;
+
+    color:#fff;
+
+    font-size:24px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.qty-count{
+    flex:1;
+
+    text-align:center;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:700;
+}
+.mobile-icons{
+    display:none;
+}
+
+@media(max-width:768px){
+
+    .mobile-icons{
+        display:flex;
+        align-items:center;
+        gap:16px;
+
+        margin-left:auto;
+        margin-right:15px;
+    }
+
+    .mobile-cart-icon,
+    .profile-icon{
+        display:block !important;
+
+        text-decoration:none;
+
+        color:#22c55e;
+
+        font-size:30px;
+    }
+
+}
+.mobile-cart-icon{
+    position:relative;
+}
+
+#mobileCartCount{
+    display:none;
+
+    position:absolute;
+
+    top:-8px;
+    right:-10px;
+
+    min-width:20px;
+    height:20px;
+
+    padding:0 4px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+    color:#fff;
+
+    font-size:11px;
+    font-weight:700;
+
+    align-items:center;
+    justify-content:center;
+}
+
+@media(min-width:769px){
+
+    .mobile-cart-icon{
+        display:none;
+    }
+
+}
+.cart-btn{
+    position:relative;
+}
+
+#desktopCartCount{
+    display:none;
+
+    position:absolute;
+
+    top:-8px;
+    right:-8px;
+
+    min-width:20px;
+    height:20px;
+
+    padding:0 4px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+    color:#fff;
+
+    font-size:11px;
+    font-weight:700;
+
+    align-items:center;
+    justify-content:center;
+}
+.cart-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.4);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:9998;
+}
+
+.cart-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart-drawer{
+    position:fixed;
+
+    top:0;
+    right:-100%;
+
+    width:400px;
+    max-width:100%;
+
+    height:100vh;
+
+    background:#fff;
+
+    transition:.3s;
+
+    z-index:9999;
+
+    overflow:hidden;   /* change from auto */
+}
+#cartItems{
+    height:calc(100vh - 65px - 220px);
+
+    overflow-y:auto;
+
+    padding-bottom:20px;
+}
+.cart-drawer.show{
+    right:0;
+}
+
+.cart-header{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    height:65px;
+
+    background:#fff;
+
+    border-bottom:1px solid #eee;
+
+    z-index:10;
+}
+
+.cart-header h3{
+    font-size:18px;
+    font-weight:700;
+
+    color:#111;
+}
+
+#closeCartBtn{
+    position:absolute;
+
+    left:15px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+    background:none;
+
+    font-size:22px;
+
+    color:#111;
+
+    cursor:pointer;
+}
+
+
+@media(max-width:768px){
+
+    .cart-drawer{
+        width:100%;
+    }
+
+}
+.cart-item{
+    display:flex;
+
+    gap:15px;
+
+    padding:16px;
+
+    border-bottom:1px solid #eee;
+}
+
+.cart-item img{
+    width:80px;
+    height:80px;
+
+    object-fit:contain;
+
+    background:#fafafa;
+
+    border-radius:12px;
+}
+
+.cart-item-details{
+    flex:1;
+
+    position:relative;
+
+    min-height:80px;
+}
+
+.cart-item-name{
+    font-size:15px;
+    font-weight:600;
+
+    color:#111;
+
+    line-height:1.4;
+}
+
+.cart-item-price{
+    margin-top:6px;
+
+    font-size:16px;
+    font-weight:700;
+}
+
+.cart-item-qty{
+    position:absolute;
+
+    right:0;
+    bottom:20px;   /* push little up */
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    width:110px;
+    height:38px;
+
+    background:#22c55e;
+
+    border-radius:8px;
+
+    overflow:hidden;
+}
+
+.cart-item-qty button{
+    width:36px;
+    height:100%;
+
+    border:none;
+    background:none;
+
+    color:#fff;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+.cart-item-count{
+    color:#fff;
+
+    font-size:15px;
+    font-weight:700;
+}
+.cart-product-qty{
+    margin-top:4px;
+
+    font-size:13px;
+    font-weight:600;
+
+    color:#666;
+}
+.empty-cart{
+    height:calc(100vh - 65px);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    color:#666;
+}
+
+.empty-cart i{
+    font-size:60px;
+    color:#d1d5db;
+}
+
+.empty-cart h3{
+    margin-top:18px;
+    font-size:22px;
+    color:#111;
+}
+
+.empty-cart p{
+    margin-top:8px;
+    font-size:14px;
+}
+.cart-skeleton{
+    height:100px;
+
+    margin:16px;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        90deg,
+        #f3f3f3 25%,
+        #ececec 50%,
+        #f3f3f3 75%
+    );
+
+    background-size:1000px 100%;
+
+    animation:shimmer 1.3s infinite linear;
+}
+.cart-bottom{
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+
+    background:#fff;
+
+    border-top:1px solid #eee;
+
+    padding:18px;
+
+    box-shadow:0 -4px 15px rgba(0,0,0,.08);
+
+    z-index:20;
+}
+
+.cart-row{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+    color:#444;
+}
+
+.cart-grand-total{
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:15px;
+
+    padding-top:15px;
+
+    border-top:1px solid #eee;
+
+    font-size:18px;
+    font-weight:700;
+}
+
+.place-order-btn{
+    width:100%;
+
+    height:52px;
+
+    margin-top:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+.cart-bottom{
+    position:sticky;
+    bottom:0;
+
+    background:#fff;
+
+    border-top:1px solid #eee;
+
+    padding:18px;
+
+    box-shadow:0 -4px 15px rgba(0,0,0,.08);
+}
+
+.cart-bottom.hide{
+    display:none;
+}
+.popup-qty-box{
+    width:110px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:#22c55e;
+
+    border-radius:10px;
+
+    overflow:hidden;
+}
+
+.popup-minus-btn,
+.popup-plus-btn{
+    width:38px;
+    height:100%;
+
+    border:none;
+    background:none;
+
+    color:#fff;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+.popup-qty-count{
+    color:#fff;
+
+    font-size:15px;
+    font-weight:700;
+}
+.login-popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.login-card{
+    width:90%;
+    max-width:400px;
+    background:#fff;
+    border-radius:22px;
+    padding:25px;
+    position:relative;
+}
+
+.close-popup{
+    position:absolute;
+    right:18px;
+    top:15px;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.login-section{
+    font-family:'Inter',sans-serif;
+    text-align:center;
+}
+
+.login-logo{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    margin-bottom:12px;
+    animation:floatLogo 2s infinite;
+}
+
+
+
+.login-section h2{
+    font-size:28px;
+    color:#111;
+    margin-bottom:18px;
+}
+
+.phone-input{
+    display:flex;
+    align-items:center;
+    border:1px solid #ddd;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.country-code{
+    padding:0 15px;
+    font-size:16px;
+    font-weight:600;
+}
+
+.phone-input input{
+    flex:1;
+    height:52px;
+    border:none;
+    outline:none;
+    font-size:16px;
+}
+
+.login-section button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    background:#FFD600;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.otp-boxes{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.otp-input{
+    width:45px;
+    height:55px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+}
+
+.change-btn,
+.resend-btn{
+    background:none!important;
+    color:#333;
+    margin-top:15px;
+}
+
+.terms{
+    margin-top:12px;
+    font-size:12px;
+    color:#777;
+}
+
+.terms a{
+    color:#333;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.shake{
+animation:shake .3s;
+}
+
+@keyframes shake{
+0%,100%{transform:translateX(0);}
+25%{transform:translateX(-8px);}
+75%{transform:translateX(8px);}
+}
+.account-sheet{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    display:none;
+    z-index:99999;
+}
+
+.sheet-content{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background:#fff;
+    border-radius:25px 25px 0 0;
+    padding:20px;
+    animation:slideUp .25s ease;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+
+.sheet-line{
+    width:50px;
+    height:5px;
+    background:#ddd;
+    border-radius:20px;
+    margin:auto;
+    margin-bottom:20px;
+}
+
+.sheet-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px 0;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+}
+
+.sheet-item i{
+    width:25px;
+    color:#22c55e;
+}
+
+.logout{
+    color:red;
+}
+.side-menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    display:none;
+    z-index:99999;
+    overflow:hidden;
+}
+
+.side-menu{
+    position:fixed;
+    top:0;
+    right:0;
+    width:280px;
+    max-width:85%;
+    height:100vh;
+    background:#fff;
+
+    padding:20px;
+
+    transform:translateX(100%);
+    transition:transform .3s ease;
+}
+
+.side-menu-overlay.active .side-menu{
+    transform:translateX(0);
+}
+
+.menu-item{
+    padding:18px 0;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.menu-item:last-child{
+    border-bottom:none;
+}
+
+.logout2{
+    color:red;
+}
+@media (max-width:768px){
+
+    html,
+    body{
+        min-height:auto !important;
+        height:auto !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+
+    .footer{
+        margin-bottom:0 !important;
+        padding-bottom:0 !important;
+    }
+
+    .cezoo-mobile-bar{
+        margin-bottom:0 !important;
+    }
+
+    *{
+        scroll-margin-bottom:0 !important;
+    }
+}
+@media (max-width:768px){
+
+    .mobile-footer-expand{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .5s ease;
+        background:#fff;
+        padding:0 15px;
+    }
+
+    .mobile-footer-expand.active{
+        max-height:3000px; /* enough height for all content */
+        padding:15px;
+    }
+
+    .mobile-footer-expand h3{
+        margin:15px 0 10px;
+        font-size:16px;
+        font-weight:700;
+    }
+
+    .mobile-footer-expand a{
+        display:block;
+        color:#555;
+        text-decoration:none;
+        margin-bottom:8px;
+        font-size:14px;
+    }
+
+    .mobile-footer-copy{
+        margin-top:20px;
+        font-size:13px;
+        color:#777;
+    }
+
+    .store-badge{
+        width:130px;
+        display:block;
+        margin:10px 0;
+    }
+
+    .cezoo-mobile-plus{
+        cursor:pointer;
+        font-size:24px;
+        font-weight:bold;
+    }
+}
+/* Hide mobile footer on PC */
+.cezoo-mobile-bar,
+.mobile-footer-expand{
+    display:none;
+}
+
+/* Show only on mobile */
+@media (max-width:768px){
+
+    .cezoo-mobile-bar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        width:100%;
+        padding:12px 15px;
+        background:#fff;
+        border-top:1px solid #ddd;
+    }
+
+    .mobile-footer-expand{
+        display:block;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .5s ease;
+        background:#fff;
+        padding:0 15px;
+    }
+
+    .mobile-footer-expand.active{
+        max-height:3000px;
+        padding:15px;
+    }
+}
+.download-apps{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+.store-badge{
+    width:130px;
+    height:auto;
+    display:block;
+}
+
+.mobile-footer-copy{
+    text-align:left;
+    font-size:13px;
+    color:#777;
+    padding:15px 0;
+    border-top:1px solid #e5e5e5;
+}
+.side-item{
+    padding:18px 0;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+    text-align:left;
+}
+
+.logout2{
+    color:red;
+}
+.menu-item{
+    margin:4px 0;
+    transition:.2s ease;
+}
+
+.menu-item{
+    transition: .2s ease;
+    border-radius: 12px;
+}
+
+.menu-item.active{
+    background: #f7f7f7; /* light gray */
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <div class="brand">
+        <span class="brand-name">CEZOO</span>
+        <span class="brand-tagline">Delivery In Minutes</span>
+    </div>
+
+    <!-- Mobile Profile Icon -->
+   <div class="mobile-icons">
+ <a href="login.html" class="profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </a>
+  <a href="#" class="mobile-cart-icon" id="cezooMobileCart">
+    <i class="fa-solid fa-cart-shopping"></i>
+
+    <span id="mobileCartCount"></span>
+</a>
+
+   
+
+</div>
+
+    <!-- Search -->
+    <div class="search-container">
+        <input type="text"
+               placeholder="Search products..."
+               class="search-bar">
+    </div>
+
+    <!-- Desktop Login & Cart -->
+   <div class="nav-right">
+
+          <a href="#" class="login-btn" onclick="openLoginPopup()">Login</a>
+
+    <a href="#" class="cart-btn" id="desktopCartBtn">
+        My Cart
+
+        <span id="desktopCartCount"></span>
+    </a>
+
+</div>
+</nav>
+<!-- Sticky Single Category -->
+<div class="sticky-category">
+    Vegetables
+</div>
+<div class="catalog-layout">
+
+    <div class="left-menu" id="leftMenu">
+
+
+        <div class="menu-item active"
+        onclick="window.location.href='fruits.html'">
+            <img src="cat/attas.png">
+            <span>Atta</span>
+        </div>
+
+        <div class="menu-item"
+     onclick="window.location.href='vegatable.html'">
+    <img src="cat/pindi.png">
+    <span>Pastries</span>
+</div>
+
+        <div class="menu-item"
+        onclick="window.location.href='vegatable.html'">
+            <img src="cat/dairy.png">
+            <span>Dairy</span>
+        </div>
+
+        <div class="menu-item"
+            onclick="window.location.href='vegatable.html'">
+            <img src="cat/meat.png">
+            <span>Chicken</span>
+        </div>
+
+        <div class="menu-item"
+            onclick="window.location.href='vegatable.html'">
+            <img src="cat/oils.png">
+            <span>Oils</span>
+        </div>
+
+        <div class="menu-item"
+            onclick="window.location.href='vegatable.html'">
+            <img src="cat/rice.png">
+            <span>Rice</span>
+        </div>
+
+        
+
+    </div>
+<div class="products-area" id="productsArea">
+
+    <div id="productsGrid" class="products-grid"></div>
+</div>
+
+</div>
+
+<section class="seo-content">
+
+   
+    <p>
+        The digital transformation of grocery shopping has made it easier than ever to access high quality produce without leaving your home. When you shop for vegetables online, you are not just buying food; you are investing in convenience, health, and variety. CEZOO brings the farm experience to your screen, offering a vast selection of organic vegetables and everyday essentials that meet strict quality standards.
+    </p>
+
+    <p>
+        Our platform ensures that fresh produce moves from local farms to your kitchen with incredible speed, maintaining the nutritional integrity and crispness of every item. By leveraging a robust network of local distributors and temperature controlled storage, we provide a seamless way to stock your kitchen with seasonal vegetables and exotic finds.
+    </p>
+
+    <p>
+        Whether you are planning a simple family meal or an elaborate feast, our service prioritizes freshness and customer satisfaction above all else.
+    </p>
+
+</section>
+<!-- PC Banner -->
+<div class="product-modal" id="productModal">
+
+    <div class="product-modal-content">
+
+        <span class="close-modal"
+              onclick="closeProduct()">
+            &times;
+        </span>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-drawer" id="cartDrawer">
+
+    <div class="cart-header">
+
+      <button id="closeCartBtn">
+    <i class="fa-solid fa-arrow-left"></i>
+</button>
+
+        <h3>My Cart</h3>
+
+    </div>
+
+    <div id="cartItems">
+
+    </div>
+<div class="cart-bottom" id="cartBottom">
+
+    <div class="cart-row">
+        <span>Total Items</span>
+        <span id="cartTotalItems">0</span>
+    </div>
+
+    <div class="cart-row">
+        <span>Items Total</span>
+        <span id="cartItemsPrice">₹0</span>
+    </div>
+
+   <div class="cart-row">
+    <span>Delivery Fee</span>
+
+    <span>
+        <span style="text-decoration:line-through;color:#999">
+            ₹20
+        </span>
+        <span style="color:#22c55e;font-weight:700">
+            FREE
+        </span>
+    </span>
+</div>
+
+<div class="cart-row">
+    <span>Handling Fee</span>
+
+    <span>
+        <span style="text-decoration:line-through;color:#999">
+            ₹5
+        </span>
+        <span style="color:#22c55e;font-weight:700">
+            FREE
+        </span>
+    </span>
+</div>
+
+    <div class="cart-grand-total">
+
+        <span>Grand Total</span>
+
+        <span id="grandTotal">
+            ₹0
+        </span>
+
+    </div>
+
+   <button class="place-order-btn" onclick="placeOrder()">
+    Place Order
+</button>
+
+</div>
+</div>
+
+<div class="login-popup" id="loginPopup">
+
+<div class="login-card">
+
+    <span class="close-popup" onclick="closeLoginPopup()">✕</span>
+
+<div class="login-section">
+
+    <img src="logocezoo.jpeg" alt="CEZOO" class="login-logo">
+
+    <p class="tagline"></p>
+
+    <h2 id="title">Log in or Sign up</h2>
+
+    <!-- Phone Screen -->
+    <div id="phoneScreen">
+
+        <div class="phone-input">
+
+            <span class="country-code">+91</span>
+
+            <input
+                type="tel"
+                id="phoneInput"
+                maxlength="10"
+                placeholder="Enter your 10 digit number">
+
+        </div>
+
+        <button onclick="showOtp()">
+            Continue
+        </button>
+
+    </div>
+
+    <!-- OTP Screen -->
+    <div id="otpScreen" style="display:none;">
+
+        <button class="change-btn" onclick="backToPhone()">
+            Change Number
+        </button>
+
+        <div class="otp-boxes">
+
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+
+        </div>
+
+        <button class="resend-btn">
+            Resend OTP
+        </button>
+
+    </div>
+
+    <p class="terms">
+        By continuing, you agree to our
+        <a href="#">Terms of service</a> &
+        <a href="#">Privacy policy</a>
+    </p>
+
+</div>
+
+</div>
+</div>
+
+
+<div class="account-sheet" id="accountSheet">
+
+    <div class="sheet-content">
+
+        <div class="sheet-line"></div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-box"></i>
+            <span>Your Orders</span>
+        </div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Addresses</span>
+        </div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-shield"></i>
+            <span>Privacy Policy</span>
+        </div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>About Us</span>
+        </div>
+
+        <div class="sheet-item logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </div>
+
+    </div>
+
+</div>
+<div class="side-menu-overlay" id="sideMenuOverlay">
+
+    <div class="side-menu">
+
+        <div class="side-item">• Your Orders</div>
+<div class="side-item">• Addresses</div>
+<div class="side-item">• Saved Items</div>
+<div class="side-item">• Offers</div>
+<div class="side-item">• Privacy Policy</div>
+<div class="side-item">• About Us</div>
+
+<div class="side-item logout2">
+    • Logout
+</div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = "https://izoipzriynkcjtwuzrfu.supabase.co";
+const supabaseKey = "sb_publishable_7ZRL1Y4JAppLTJonepuTIw_UQyGjVVw";
+
+const supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
+console.log("Supabase Connected ✅");
+function showSkeletons(){
+
+    const grid = document.getElementById('productsGrid');
+
+    grid.innerHTML = Array(12).fill(`
+        <div class="skeleton-card">
+
+            <div class="skeleton skeleton-img"></div>
+
+            <div class="skeleton skeleton-line"></div>
+            <div class="skeleton skeleton-line short"></div>
+
+            <div class="skeleton skeleton-line"></div>
+
+            <div class="skeleton skeleton-line short"></div>
+
+        </div>
+    `).join('');
+}
+let products = [];
+let allProducts={};
+async function loadTable(table){
+
+    if(allProducts[table]) return;
+
+    const {data,error} =
+    await supabaseClient
+    .from(table)
+    .select("*");
+
+    if(!error){
+
+        allProducts[table]=data;
+
+    }
+
+}
+let cart =
+JSON.parse(
+localStorage.getItem("mobileCart")
+) || {};
+async function loadFreshFruits(){
+
+   const PRODUCT_IDS = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63];
+
+const { data, error } = await supabaseClient
+    .from('grocery_products')
+    .select('*')
+    .in('id', PRODUCT_IDS);
+products = data;
+allProducts["grocery_products"]=data;
+    if(error){
+        console.error(error);
+        return;
+    }
+
+    const grid = document.getElementById('productsGrid');
+
+    grid.innerHTML = data.map(product => `
+<div class="product-card"
+     data-id="${product.id}"
+     onclick='openProduct(${JSON.stringify(product)})'>
+    <img
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    data-src="${product.image1}"
+    class="lazy-image"
+    alt=""
+    >
+
+    <div class="product-top-row">
+
+        <div>
+            <div class="product-name">
+                ${product.name}
+            </div>
+
+            <div class="product-brand">
+                ${product.brand || ''}
+            </div>
+        </div>
+
+        <div class="product-qty">
+            ${product.quantity} ${product.unit}
+        </div>
+
+    </div>
+
+    <div class="product-middle-row">
+
+        <div class="price-wrap">
+
+            <span class="discount-price">
+                ₹${product.discount_price}
+            </span>
+
+            <span class="original-price">
+                ₹${product.original_price}
+            </span>
+
+        </div>
+
+        <div class="product-rating">
+            ⭐ ${product.rating}
+        </div>
+
+    </div>
+
+   <div class="qty-box">
+   <button class="minus-btn"
+        onclick="event.stopPropagation()">−</button>
+    <span class="qty-count">1</span>
+   
+<button class="plus-btn"
+        onclick="event.stopPropagation()">+</button>
+</div>
+
+<button class="add-btn-full"
+        onclick="event.stopPropagation()">
+    ADD
+</button>
+
+</div>
+    `).join('');
+   document.querySelectorAll(".product-card").forEach(card=>{
+
+    const productId = card.dataset.id;
+
+    const addBtn = card.querySelector(".add-btn-full");
+    const qtyBox = card.querySelector(".qty-box");
+    const plusBtn = card.querySelector(".plus-btn");
+    const minusBtn = card.querySelector(".minus-btn");
+    const count = card.querySelector(".qty-count");
+
+    let key="grocery_products_"+productId;
+
+let qty=cart[key]?.qty || 0;
+if(qty > 0){
+
+    addBtn.style.display = "none";
+
+    qtyBox.style.display = "flex";
+
+    count.textContent = qty;
+
+}else{
+
+    addBtn.style.display = "block";
+
+    qtyBox.style.display = "none";
+
+}
+
+    addBtn.addEventListener("click",(e)=>{
+
+        e.stopPropagation();
+
+        qty=1;
+
+        addBtn.style.display="none";
+        qtyBox.style.display="flex";
+
+        count.textContent=qty;
+
+  cart[key]={
+    table:"grocery_products",
+    id:Number(productId),
+    qty:qty
+};
+        updateCartBadge();
+
+    });
+
+    plusBtn.addEventListener("click",(e)=>{
+
+        e.stopPropagation();
+
+        qty++;
+
+        count.textContent=qty;
+
+       cart[key]={
+    table:"grocery_products",
+    id:Number(productId),
+    qty:qty
+};
+
+        updateCartBadge();
+
+    });
+
+   minusBtn.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
+
+    qty--;
+
+    if(qty<=0){
+
+        qty = 0;
+
+       delete cart[key];
+
+        count.textContent = 1;
+
+        qtyBox.style.display = "none";
+
+        addBtn.style.display = "block";
+
+    }else{
+
+        count.textContent = qty;
+
+        cart[key]={
+    table:"grocery_products",
+    id:Number(productId),
+    qty:qty
+};
+    }
+
+    localStorage.setItem(
+        "mobileCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartBadge();
+
+});
+});
+
+
+
+    initLazyImages();
+}
+function initLazyImages(){
+
+    const images =
+        document.querySelectorAll('.lazy-image');
+
+    const observer =
+        new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    const img = entry.target;
+
+                    img.classList.add('loading');
+
+                    img.onload = () => {
+                        img.classList.remove('loading');
+                    };
+
+                    img.src = img.dataset.src;
+
+                    observer.unobserve(img);
+                }
+
+            });
+
+        }, {
+            root: document.querySelector('.catalog-layout'),
+            rootMargin:'200px'
+        });
+
+    images.forEach(img =>
+        observer.observe(img)
+    );
+}
+showSkeletons();
+loadFreshFruits();
+updateCartBadge();
+function openProduct(product){
+
+    document.getElementById("productModal")
+        .style.display = "flex";
+
+    document.getElementById("modalContent")
+        .innerHTML = `
+
+        <div class="popup-layout">
+
+            <div class="popup-left">
+
+                <div class="popup-slider" id="popupSlider">
+
+                    <div class="popup-slide">
+                        <img src="${product.image1}">
+                    </div>
+
+                    ${product.image2 ? `
+                    <div class="popup-slide">
+                        <img src="${product.image2}">
+                    </div>
+                    ` : ''}
+
+                    ${product.image3 ? `
+                    <div class="popup-slide">
+                        <img src="${product.image3}">
+                    </div>
+                    ` : ''}
+
+                </div>
+
+                <div class="slider-dots"
+                     id="sliderDots"></div>
+
+            </div>
+
+            <div class="popup-right">
+
+                <h2 class="popup-product-name">
+    ${product.name}
+</h2>
+<div class="popup-brand-name">
+    ${product.brand || '-'}
+</div>
+<p class="popup-short-desc">
+    ${product.short_desc || ''}
+</p>
+<div class="popup-quantity">
+    ${product.quantity} ${product.unit}
+</div>
+<div class="popup-price-row">
+
+    <div class="popup-price-left">
+
+        <span class="popup-discount-price">
+            ₹${product.discount_price}
+        </span>
+
+        <span class="popup-original-price">
+            ₹${product.original_price}
+        </span>
+
+    </div>
+    
+
+   <div class="popup-qty-box" style="display:none">
+
+    <button class="popup-minus-btn">−</button>
+
+    <span class="popup-qty-count">1</span>
+
+    <button class="popup-plus-btn">+</button>
+
+</div>
+
+<button class="popup-add-btn">
+    ADD
+</button>
+
+</div>
+<div class="card-rating">
+    <i class="fa-solid fa-star"></i>
+    ${product.rating}
+    <span class="rating-count">
+        (200+ ratings)
+    </span>
+</div>
+
+<div class="why-cezoo">
+
+    <h3 class="why-title">
+        Why shop from CEZOO?
+    </h3>
+
+    <div class="why-item">
+
+        <img src="icons/f2.jpg" alt="">
+
+        <div>
+            <div class="why-heading">
+                Freshness Guaranteed
+            </div>
+
+            <div class="why-text">
+                Direct sourcing from trusted farms and suppliers.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="why-item">
+
+        <img src="icons/f4.png" alt="">
+
+        <div>
+            <div class="why-heading">
+                Fast Delivery
+            </div>
+
+            <div class="why-text">
+                Get groceries delivered in minutes to your doorstep.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="why-item">
+
+        <img src="icons/f5.png" alt="">
+
+        <div>
+            <div class="why-heading">
+                Quality Checked
+            </div>
+
+            <div class="why-text">
+                Every product goes through strict quality checks.
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="product-details-mobile">
+
+    <div class="product-details-heading">
+        Product Details
+    </div>
+
+    <div class="product-details-content">
+        ${product.long_desc || ''}
+    </div>
+
+</div>
+
+
+<div class="ingredients-section">
+
+    <div class="ingredients-heading">
+        Nutritional Information
+    </div>
+
+    <table class="ingredients-table">
+
+        ${(() => {
+
+            let html = '';
+
+            try{
+
+                const arr =
+                    JSON.parse(product.ingredients || '[]');
+
+                for(let i=0; i<arr.length; i+=2){
+
+                    html += `
+                    <tr>
+                        <td>${arr[i]}</td>
+                        <td>${arr[i+1] || ''}</td>
+                    </tr>
+                    `;
+                }
+
+            }catch(e){}
+
+            return html;
+
+        })()}
+
+    </table>
+
+</div>
+<div class="seller-section">
+
+    <div class="seller-heading">
+        Seller Details
+    </div>
+
+    <table class="seller-table">
+
+        <tr>
+            <td>Seller Name</td>
+            <td>${product.seller_name || '-'}</td>
+        </tr>
+
+        <tr>
+            <td>FSSAI Number</td>
+            <td>${product.fssai_number || '-'}</td>
+        </tr>
+
+        <tr>
+            <td>Address</td>
+            <td>${product.seller_address || '-'}</td>
+        </tr>
+
+        <tr>
+            <td>Customer Care</td>
+            <td>${product.customer_care || '-'}</td>
+        </tr>
+
+    </table>
+
+</div>
+<div class="additional-section">
+
+    <div class="additional-heading">
+        Additional Information
+    </div>
+
+    <div class="additional-content">
+        ${product.additional_info || '-'}
+    </div>
+
+</div>
+<div class="buy-now-section">
+
+    <button class="popup-buy-btn">
+        BUY NOW
+    </button>
+
+</div>
+</div>
+    `;
+
+    initSlider();
+    const id = String(product.id);
+    const key = "grocery_products_"+id;
+
+const addBtn = document.querySelector(".popup-add-btn");
+const qtyBox = document.querySelector(".popup-qty-box");
+const plusBtn = document.querySelector(".popup-plus-btn");
+const minusBtn = document.querySelector(".popup-minus-btn");
+const count = document.querySelector(".popup-qty-count");
+
+let qty = cart[key]?.qty || 0;
+
+if(qty>0){
+
+    addBtn.style.display="none";
+    qtyBox.style.display="flex";
+
+    count.textContent=qty;
+
+}
+
+addBtn.onclick=()=>{
+
+    qty=1;
+
+   cart[key]={
+    table:"grocery_products",
+    id:Number(id),
+    qty:qty
+};
+    addBtn.style.display="none";
+    qtyBox.style.display="flex";
+
+    count.textContent=qty;
+
+    updateCartBadge();
+    renderCart();
+    loadFreshFruits();
+
+};
+
+plusBtn.onclick=()=>{
+
+    qty++;
+
+  cart[key]={
+    table:"grocery_products",
+    id:Number(id),
+    qty:qty
+};
+    count.textContent=qty;
+
+    updateCartBadge();
+    renderCart();
+    loadFreshFruits();
+
+};
+
+minusBtn.onclick=()=>{
+
+    qty--;
+
+    if(qty<=0){
+
+        delete cart[key];
+
+        qtyBox.style.display="none";
+        addBtn.style.display="block";
+
+        qty=0;
+
+    }else{
+
+        cart[id]={
+    table:"grocery_products",
+    id:Number(id),
+    qty:qty
+};
+
+        count.textContent=qty;
+
+    }
+
+    updateCartBadge();
+    renderCart();
+    loadFreshFruits();
+
+};
+}
+
+function closeProduct(){
+
+    document.getElementById("productModal")
+        .style.display = "none";
+}
+function updateCartBadge(){
+
+    let total = 0;
+
+   Object.values(cart).forEach(item=>{
+    total += item.qty;
+});
+
+    const mobileBadge =
+        document.getElementById("mobileCartCount");
+
+    const desktopBadge =
+        document.getElementById("desktopCartCount");
+
+    if(total===0){
+
+        mobileBadge.style.display = "none";
+        desktopBadge.style.display = "none";
+
+    }else{
+
+        mobileBadge.style.display = "flex";
+        desktopBadge.style.display = "flex";
+
+        mobileBadge.textContent = total;
+        desktopBadge.textContent = total;
+    }
+
+    localStorage.setItem(
+        "mobileCart",
+        JSON.stringify(cart)
+    );
+}
+window.onclick = function(e){
+
+    const modal =
+        document.getElementById('productModal');
+
+    if(e.target === modal){
+
+        closeProduct();
+
+    }
+}
+function initSlider(){
+
+    const slider =
+        document.getElementById('popupSlider');
+
+    const slides =
+        slider.querySelectorAll('.popup-slide');
+
+    const dotsWrap =
+        document.getElementById('sliderDots');
+
+    dotsWrap.innerHTML = '';
+
+    slides.forEach((_,index)=>{
+
+        dotsWrap.innerHTML += `
+        <span class="slider-dot
+        ${index===0?'active':''}">
+        </span>
+        `;
+    });
+
+    const dots =
+        dotsWrap.querySelectorAll('.slider-dot');
+
+    slider.addEventListener('scroll',()=>{
+
+        const index =
+        Math.round(
+            slider.scrollLeft /
+            slider.clientWidth
+        );
+
+        dots.forEach(dot =>
+            dot.classList.remove('active')
+        );
+
+        if(dots[index]){
+
+            dots[index]
+                .classList.add('active');
+        }
+
+    });
+
+}
+const cartDrawer =
+document.getElementById("cartDrawer");
+
+const cartOverlay =
+document.getElementById("cartOverlay");
+
+const closeCartBtn =
+document.getElementById("closeCartBtn");
+
+function openCart(e){
+
+    if(e) e.preventDefault();
+
+    document.getElementById("cartItems").innerHTML=`
+
+<div class="cart-skeleton"></div>
+<div class="cart-skeleton"></div>
+<div class="cart-skeleton"></div>
+
+`;
+
+cartDrawer.classList.add("show");
+
+setTimeout(()=>{
+    renderCart();
+},300);
+
+    cartOverlay.classList.add("show");
+
+}
+function closeCart(){
+
+    cartDrawer.classList.remove("show");
+
+    cartOverlay.classList.remove("show");
+
+}
+
+document
+.getElementById("cezooMobileCart")
+.addEventListener("click",openCart);
+
+document
+.getElementById("desktopCartBtn")
+.addEventListener("click",openCart);
+
+closeCartBtn.addEventListener(
+    "click",
+    closeCart
+);
+
+cartOverlay.addEventListener(
+    "click",
+    closeCart
+);
+async function renderCart(){
+    cart =
+    JSON.parse(
+        localStorage.getItem("mobileCart")
+    ) || {};
+
+    let html='';
+
+    if(Object.keys(cart).length===0){
+
+    document.getElementById("cartBottom")
+        .classList.add("hide");
+
+    document.getElementById("cartItems").innerHTML=`
+    <div class="empty-cart">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <h3>No items in cart</h3>
+
+        <p>Add products to get started</p>
+
+    </div>
+    `;
+
+    return;
+}
+for(const key of Object.keys(cart)){
+
+    await loadTable(cart[key].table);
+
+}
+   Object.keys(cart).forEach(key=>{
+       const item = cart[key];
+
+const product=
+allProducts[item.table]?.find(
+p=>String(p.id)===String(item.id)
+);
+
+        if(!product) return;
+
+        html += `
+
+        <div class="cart-item">
+
+            <img src="${product.image1}">
+
+            <div class="cart-item-details">
+
+                <div class="cart-item-name">
+                    ${product.name}
+                </div>
+
+                <div class="cart-item-price">
+                    ₹${product.discount_price}
+                </div>
+
+
+<div class="cart-product-qty">
+    ${product.quantity} ${product.unit}
+</div>
+               <div class="cart-item-qty">
+
+    <button class="cart-minus"
+            data-id="${key}">
+        −
+    </button>
+
+    <span class="cart-item-count">
+      ${cart[key].qty}
+    </span>
+
+    <button class="cart-plus"
+            data-id="${key}">
+        +
+    </button>
+
+</div>
+
+            </div>
+
+        </div>
+
+        `;
+    });
+let totalItems = 0;
+let itemsPrice = 0;
+Object.keys(cart).forEach(key=>{
+
+    const item = cart[key];
+
+    const product =
+    allProducts[item.table]?.find(
+        p=>String(p.id)===String(item.id)
+    );
+
+    if(!product) return;
+
+    totalItems += item.qty;
+
+    itemsPrice +=
+    Number(product.discount_price) *
+    item.qty;
+
+});
+document.getElementById("cartBottom")
+    .classList.remove("hide");
+    document.getElementById("cartItems").innerHTML=html;
+   const deliveryFee = 0;
+const handlingFee = 0;
+
+document.getElementById("cartTotalItems")
+.textContent = totalItems;
+
+document.getElementById("cartItemsPrice")
+.textContent = "₹"+itemsPrice;
+
+document.getElementById("grandTotal")
+.textContent =
+"₹"+(
+    itemsPrice +
+    deliveryFee +
+    handlingFee
+);
+    document.querySelectorAll(".cart-plus")
+.forEach(btn=>{
+
+    btn.onclick=()=>{
+
+       const key=btn.dataset.id;
+        cart[key].qty++;
+        updateCartBadge();
+
+        renderCart();
+
+        loadFreshFruits();
+
+    };
+
+});
+
+document.querySelectorAll(".cart-minus")
+.forEach(btn=>{
+
+    btn.onclick=()=>{
+
+       const key=btn.dataset.id;
+       cart[key].qty--;
+
+        if(cart[key].qty<=0){
+
+    delete cart[key];
+
+}
+
+        updateCartBadge();
+
+        renderCart();
+
+        loadFreshFruits();
+
+    };
+
+});
+}
+
+
+// Place order Not logged in
+function placeOrder(){
+
+    const loggedIn =
+        localStorage.getItem("isLoggedIn");
+
+    const phone =
+        localStorage.getItem("userPhone");
+
+    if(loggedIn==="true" && phone){
+
+        // user logged in
+        window.location.href="checkout.html";
+
+    }else{
+
+        // not logged in
+        window.location.href="login.html";
+
+    }
+
+}
+
+
+
+
+function openLoginPopup(){
+
+    if(localStorage.getItem("isLoggedIn")==="true"){
+
+        document.getElementById("sideMenuOverlay").style.display="block";
+
+        setTimeout(()=>{
+            document.getElementById("sideMenuOverlay").classList.add("active");
+        },10);
+
+        return;
+    }
+
+    document.getElementById("loginPopup").style.display="flex";
+
+}
+document.getElementById("sideMenuOverlay").onclick=function(e){
+
+    if(e.target===this){
+
+        this.classList.remove("active");
+
+        setTimeout(()=>{
+            this.style.display="none";
+        },300);
+
+    }
+
+};
+document.querySelector(".logout2").onclick=function(){
+
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userPhone");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("otpMode");
+
+    location.reload();
+
+};
+
+if(localStorage.getItem("isLoggedIn")==="true"){
+
+    document.querySelector(".login-btn").innerHTML = "Account";
+
+}
+
+function closeLoginPopup(){
+
+    document.getElementById("loginPopup").style.display="none";
+
+    document.getElementById("phoneScreen").style.display="block";
+    document.getElementById("otpScreen").style.display="none";
+    document.getElementById("title").innerHTML="Log in or Sign up";
+
+    boxes.forEach(box=>{
+        box.value="";
+    });
+
+}
+
+const boxes=document.querySelectorAll(".otp-input");
+
+boxes.forEach((box,index)=>{
+
+box.addEventListener("input",()=>{
+
+if(box.value && index<5){
+boxes[index+1].focus();
+}
+
+let otp="";
+boxes.forEach(b=>otp+=b.value);
+
+if(otp.length===6){
+
+if(otp==="123456"){
+
+    localStorage.setItem("isLoggedIn","true");
+    localStorage.setItem(
+        "userPhone",
+        localStorage.getItem("phoneNumber")
+    );
+
+    // Reset popup to phone screen
+    document.getElementById("phoneScreen").style.display="block";
+    document.getElementById("otpScreen").style.display="none";
+    document.getElementById("title").innerHTML="Log in or Sign up";
+
+    // Clear OTP boxes
+    boxes.forEach(box=>{
+        box.value="";
+    });
+
+    // Close popup
+    document.getElementById("loginPopup").style.display="none";
+
+}
+else{
+
+document.querySelector(".otp-boxes").classList.add("shake");
+
+setTimeout(()=>{
+
+document.querySelector(".otp-boxes").classList.remove("shake");
+
+boxes.forEach(box=>box.value="");
+
+boxes[0].focus();
+
+},300);
+
+}
+
+}
+
+});
+
+});
+
+function showOtp(){
+
+let phone=document.getElementById("phoneInput");
+
+if(phone.value.length!=10){
+
+document.querySelector(".phone-input").classList.add("shake");
+
+setTimeout(()=>{
+document.querySelector(".phone-input").classList.remove("shake");
+},300);
+
+return;
+}
+
+localStorage.setItem("phoneNumber",phone.value);
+
+document.getElementById("phoneScreen").style.display="none";
+document.getElementById("otpScreen").style.display="block";
+
+document.getElementById("title").innerHTML="Enter OTP";
+
+boxes[0].focus();
+
+}
+
+function backToPhone(){
+
+document.getElementById("phoneScreen").style.display="block";
+
+document.getElementById("otpScreen").style.display="none";
+
+document.getElementById("title").innerHTML="Log in or Sign up";
+
+boxes.forEach(box=>box.value="");
+
+}
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth <= 768){
+
+        if(document.getElementById("loginPopup").style.display==="flex"){
+
+            closeLoginPopup();
+
+            window.location.href="pages/login.html";
+
+        }
+
+    }
+
+});
+if(localStorage.getItem("isLoggedIn")==="true"){
+
+    // Keep old icon unchanged
+
+    document.querySelector(".profile-icon").href="javascript:void(0)";
+
+    document.querySelector(".profile-icon").onclick=function(e){
+
+        e.preventDefault();
+
+        document.getElementById("accountSheet").style.display="block";
+
+    };
+
+}
+
+document.getElementById("accountSheet").onclick=function(e){
+
+    if(e.target===this){
+        this.style.display="none";
+    }
+
+};
+
+document.querySelector(".logout").onclick=function(){
+
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userPhone");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("otpMode");
+
+    location.reload();
+
+};
+if(window.innerWidth > 768){
+    document.getElementById("accountSheet").style.display="none";
+}
+
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth > 768){
+        document.getElementById("accountSheet").style.display="none";
+    }
+
+});
+
+</script>
+</body>
+</html>
