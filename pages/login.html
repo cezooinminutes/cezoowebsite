@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEZOO Blinkit Style</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:#f7fbff;
+}
+
+/* Full Screen Background */
+.bg-container{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+}
+
+/* Moving Layer */
+.bg-track{
+    position:absolute;
+    top:-80px;
+    left:-80px;
+
+    display:grid;
+    grid-template-columns:repeat(12,130px);
+    gap:24px;
+
+    width:max-content;
+
+    animation:moveLeft 20s linear infinite;
+}
+
+/* Blinkit Style Cards */
+.product-card{
+    width:130px;
+    height:130px;
+
+    background:#DDF4FF; /* Sky Blue */
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid #B9E8FF;
+
+    box-shadow:
+    0 4px 12px rgba(0,150,255,0.12);
+}
+
+.product-card img{
+    width:110px;
+    height:110px;
+    object-fit:contain;
+}
+.product-card img{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+}
+
+/* Continuous movement */
+@keyframes moveLeft{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-220px);
+    }
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+.product-card{
+    width:72px;
+    height:72px;
+    border-radius:14px;
+}
+
+.product-card img{
+    width:42px;
+    height:42px;
+}
+
+.bg-track{
+    grid-template-columns:repeat(10,72px);
+    gap:18px;
+}
+
+}
+/* LOGIN SECTION */
+
+
+.login-section{
+    font-family: 'Inter', sans-serif;
+}
+/* Logo Up Down Animation */
+
+.login-logo{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    margin-bottom:12px;
+}
+
+@keyframes floatLogo{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+.login-section{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width:400px;
+    text-align:center;
+}
+
+.tagline{
+    font-size:15px;
+    color:#666;
+    margin-bottom:8px;
+}
+
+.login-section h2{
+    font-size:28px;
+    color:#111;
+    margin-bottom:18px;
+}
+
+.login-section input{
+    width:100%;
+    height:52px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:0 15px;
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.login-section button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    background:#FFD600;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.terms{
+    margin-top:12px;
+    font-size:12px;
+    color:#777;
+}
+
+.terms a{
+    color:#333;
+    text-decoration:none;
+    font-weight:600;
+}
+/* PC / Laptop Not Allowed */
+.pc-block{
+    display:none;
+}
+
+@media (min-width:769px){
+
+body>*{
+    display:none;
+}
+
+.pc-block{
+    display:flex !important;
+    position:fixed;
+    inset:0;
+    background:#f7fbff;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    font-family:'Inter',sans-serif;
+    text-align:center;
+    padding:20px;
+}
+
+.pc-block h1{
+    font-size:32px;
+    color:#111;
+    margin-bottom:12px;
+}
+
+.pc-block p{
+    color:#666;
+    font-size:17px;
+}
+
+}
+/* Show only on mobile portrait */
+/* Show on all mobiles (portrait + landscape) */
+/* Show on mobile devices only */
+.mobile-products{
+    display: contents;
+}
+
+/* Hide on desktops/laptops, even if the window is narrow */
+@media (hover: hover) and (pointer: fine),
+       (min-width: 769px){
+    .mobile-products{
+        display: none !important;
+    }
+}
+.phone-input{
+    width:100%;
+    height:52px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+
+.country-code{
+    width:58px;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    font-weight:600;
+    color:#111;
+    border-right:1px solid #eee;
+    background:#fafafa;
+}
+
+.phone-input input{
+    flex:1;
+    height:100%;
+    border:none !important;
+    outline:none;
+    padding:0 15px;
+    font-size:16px;
+    margin:0 !important;
+    background:transparent;
+}
+.change-btn{
+    width:auto !important;
+    height:auto !important;
+    background:none !important;
+    color:#666;
+    font-size:13px;
+    border:none !important;
+    margin-bottom:15px;
+}
+
+.otp-boxes{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+}
+
+.otp-input{
+    width:45px !important;
+    height:55px !important;
+    border:1px solid #ddd !important;
+    border-radius:12px !important;
+    text-align:center;
+    font-size:22px !important;
+    font-weight:700;
+    padding:0 !important;
+}
+
+.shake{
+    animation:shake .3s;
+}
+
+@keyframes shake{
+0%,100%{transform:translateX(0);}
+25%{transform:translateX(-8px);}
+75%{transform:translateX(8px);}
+}
+.resend-btn{
+    width:auto !important;
+    height:auto !important;
+    background:none !important;
+    border:none !important;
+    color:#00A651;
+    font-size:14px;
+    font-weight:600;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-container">
+<div class="bg-track">
+
+<!-- Row 1 -->
+<div class="product-card"><img src="cat/attas.png"></div>
+<div class="product-card"><img src="cat/baby_care.png"></div>
+<div class="product-card"><img src="cat/choclates.png"></div>
+<div class="product-card"><img src="cat/cleaning.png"></div>
+<div class="product-card"><img src="cat/cool_drinks.png"></div>
+<div class="product-card"><img src="cat/dairy.png"></div>
+<div class="product-card"><img src="cat/fuit.png"></div>
+<div class="product-card"><img src="cat/gift items.png"></div>
+<div class="product-card"><img src="cat/groceries.png"></div>
+<div class="product-card"><img src="cat/ice creams.png"></div>
+<div class="product-card"><img src="cat/instant foods.png"></div>
+<div class="product-card"><img src="cat/lays packets.png"></div>
+
+<!-- Row 2 -->
+<div class="product-card"><img src="cat/attas.png"></div>
+<div class="product-card"><img src="cat/baby_care.png"></div>
+<div class="product-card"><img src="cat/choclates.png"></div>
+<div class="product-card"><img src="cat/cleaning.png"></div>
+<div class="product-card"><img src="cat/cool_drinks.png"></div>
+<div class="product-card"><img src="cat/dairy.png"></div>
+<div class="product-card"><img src="cat/fuit.png"></div>
+<div class="product-card"><img src="cat/gift items.png"></div>
+<div class="product-card"><img src="cat/groceries.png"></div>
+<div class="product-card"><img src="cat/ice creams.png"></div>
+<div class="product-card"><img src="cat/instant foods.png"></div>
+<div class="product-card"><img src="cat/lays packets.png"></div>
+<!-- Row 3 -->
+<div class="product-card"><img src="cat/attas.png"></div>
+<div class="product-card"><img src="cat/baby_care.png"></div>
+<div class="product-card"><img src="cat/choclates.png"></div>
+<div class="product-card"><img src="cat/cleaning.png"></div>
+<div class="product-card"><img src="cat/cool_drinks.png"></div>
+<div class="product-card"><img src="cat/dairy.png"></div>
+<div class="product-card"><img src="cat/fuit.png"></div>
+<div class="product-card"><img src="cat/gift items.png"></div>
+<div class="product-card"><img src="cat/groceries.png"></div>
+<div class="product-card"><img src="cat/ice creams.png"></div>
+<div class="product-card"><img src="cat/instant foods.png"></div>
+<div class="product-card"><img src="cat/lays packets.png"></div>
+
+<!-- Row 4 -->
+<div class="product-card"><img src="cat/attas.png"></div>
+<div class="product-card"><img src="cat/baby_care.png"></div>
+<div class="product-card"><img src="cat/choclates.png"></div>
+<div class="product-card"><img src="cat/cleaning.png"></div>
+<div class="product-card"><img src="cat/cool_drinks.png"></div>
+<div class="product-card"><img src="cat/dairy.png"></div>
+<div class="product-card"><img src="cat/fuit.png"></div>
+<div class="product-card"><img src="cat/gift items.png"></div>
+<div class="product-card"><img src="cat/groceries.png"></div>
+<div class="product-card"><img src="cat/ice creams.png"></div>
+<div class="product-card"><img src="cat/instant foods.png"></div>
+<div class="product-card"><img src="cat/lays packets.png"></div>
+<div class="product-card"><img src="cat/dairy.png"></div>
+<div class="product-card"><img src="cat/fuit.png"></div>
+<div class="mobile-products">
+
+<div class="product-card"><img src="cat/attas.png"></div>
+<div class="product-card"><img src="cat/baby_care.png"></div>
+<div class="product-card"><img src="cat/choclates.png"></div>
+<div class="product-card"><img src="cat/cleaning.png"></div>
+<div class="product-card"><img src="cat/cool_drinks.png"></div>
+<div class="product-card"><img src="cat/dairy.png"></div>
+<div class="product-card"><img src="cat/fuit.png"></div>
+<div class="product-card"><img src="cat/gift items.png"></div>
+<div class="product-card"><img src="cat/groceries.png"></div>
+
+</div>
+</div>
+
+</div>
+<div class="login-section">
+
+    <img src="logocezoo.jpeg" alt="CEZOO" class="login-logo">
+
+    <p class="tagline"></p>
+
+    <h2 id="title">Log in or Sign up</h2>
+
+    <!-- Phone Screen -->
+    <div id="phoneScreen">
+
+        <div class="phone-input">
+
+            <span class="country-code">+91</span>
+
+            <input
+                type="tel"
+                id="phoneInput"
+                maxlength="10"
+                placeholder="Enter your 10 digit number">
+
+        </div>
+
+        <button onclick="showOtp()">
+            Continue
+        </button>
+
+    </div>
+
+    <!-- OTP Screen -->
+    <div id="otpScreen" style="display:none;">
+
+        <button class="change-btn" onclick="backToPhone()">
+             Change Number
+        </button>
+
+        <div class="otp-boxes">
+
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+
+        </div>
+ <button class="resend-btn" onclick="resetOtp()">
+        Resend OTP
+    </button>
+    </div>
+
+    <p class="terms">
+        By continuing, you agree to our
+        <a href="#">Terms of service</a> &
+        <a href="#">Privacy policy</a>
+    </p>
+
+</div>
+
+
+<div class="pc-block">
+    <h1>📱 Mobile Only</h1>
+    <p>This page is not available on desktop.<br>
+    Please open it on your mobile device.</p>
+</div>
+<script>
+
+const boxes=document.querySelectorAll(".otp-input");
+// Restore OTP screen after refresh
+if(localStorage.getItem("otpMode")==="true"){
+
+    document.getElementById("phoneScreen").style.display="none";
+    document.getElementById("otpScreen").style.display="block";
+
+    document.getElementById("title").innerHTML="Enter OTP";
+
+    document.getElementById("phoneInput").value=
+        localStorage.getItem("phoneNumber") || "";
+
+}
+boxes.forEach((box,index)=>{
+
+    box.addEventListener("input",()=>{
+
+        if(box.value && index<5){
+            boxes[index+1].focus();
+        }
+
+        let otp="";
+
+        boxes.forEach(b=>{
+            otp+=b.value;
+        });
+
+        // Check only when all 6 digits are entered
+        if(otp.length===6){
+
+            if(otp==="123456"){
+
+    localStorage.setItem("isLoggedIn","true");
+
+    localStorage.setItem(
+        "userPhone",
+        localStorage.getItem("phoneNumber")
+    );
+
+    localStorage.removeItem("otpMode");
+
+    window.location.href="../index.html";
+
+}
+            
+            else{
+
+                document.querySelector(".otp-boxes").classList.add("shake");
+
+                setTimeout(()=>{
+                    document.querySelector(".otp-boxes").classList.remove("shake");
+
+                    // Clear OTP
+                    boxes.forEach(box=>{
+                        box.value="";
+                    });
+
+                    // Focus first box again
+                    boxes[0].focus();
+
+                },300);
+
+            }
+
+        }
+
+    });
+
+});
+function showOtp(){
+
+    let phone=document.getElementById("phoneInput");
+
+    if(phone.value.length!=10){
+
+        document.querySelector(".phone-input").classList.add("shake");
+
+        setTimeout(()=>{
+            document.querySelector(".phone-input").classList.remove("shake");
+        },300);
+
+        return;
+    }
+
+    // Save state
+    localStorage.setItem("otpMode","true");
+    localStorage.setItem("phoneNumber",phone.value);
+
+    document.getElementById("phoneScreen").style.display="none";
+    document.getElementById("otpScreen").style.display="block";
+    document.getElementById("title").innerHTML="Enter OTP";
+
+    boxes[0].focus();
+
+}
+
+function backToPhone(){
+
+    // Clear state
+    localStorage.removeItem("otpMode");
+    localStorage.removeItem("phoneNumber");
+
+    document.getElementById("phoneScreen").style.display="block";
+    document.getElementById("otpScreen").style.display="none";
+
+    document.getElementById("title").innerHTML="Log in or Sign up";
+
+    boxes.forEach(box=>{
+        box.value="";
+    });
+
+}
+
+</script>
+</body>
+</html>

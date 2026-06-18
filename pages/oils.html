@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEZOO</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#ffffff;
+    font-family:Arial, sans-serif;
+    min-height:150vh;
+}
+
+/* NAVBAR */
+.navbar{
+    width:100%;
+    height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+}
+
+/* LEFT LOGO SECTION */
+.brand{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-left:10px;
+    padding-right:20px;
+    border-right:1px solid #dcdcdc;
+}
+
+.brand-name{
+    font-family:'Bungee', cursive;
+    font-size:58px;
+    line-height:0.85;
+    color:#22c55e;
+}
+
+.brand-tagline{
+    margin-top:4px;
+    margin-left:8px; /* push right */
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#666;
+}
+
+/* RIGHT SIDE */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    margin-right:25px;
+}
+
+.login-btn{
+    text-decoration:none;
+    color:#111;
+    font-size:18px;
+    font-weight:600;
+}
+
+.cart-btn{
+    text-decoration:none;
+    background:#22c55e;
+    color:#fff;
+    padding:12px 24px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:700;
+}
+/* NAVBAR */
+.navbar{
+    width:100%;
+    min-height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+    padding-right:20px;
+}
+
+/* SEARCH */
+.search-container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    padding:0 30px;
+}
+
+.search-bar{
+    width:100%;
+    max-width:600px;
+    height:48px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:0 18px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-bar:focus{
+    border-color:#22c55e;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-wrap:wrap;
+        min-height:auto;
+        height:auto;
+        padding:10px;
+    }
+    .brand-name{
+        font-size:38px;
+    }
+
+    .brand-tagline{
+    font-size:11px;
+    margin-left:2px;
+}
+
+    .nav-right{
+        display:none;
+    }
+
+   .profile-icon{
+    display:block !important;
+    font-size:32px;
+    color:#22c55e;
+    margin-left:auto;
+}
+
+    .brand{
+        border-right:none;
+    }
+
+    .search-container{
+        flex:0 0 100%;
+        width:100%;
+        order:99;
+        margin-top:12px;
+        padding:0;
+    }
+
+    .search-bar{
+        width:100%;
+        max-width:none;
+    }
+}
+
+.profile-icon{
+    display:none;
+    text-decoration:none;
+    color:#22c55e;
+    font-size:30px;
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <div class="brand">
+        <span class="brand-name">CEZOO</span>
+        <span class="brand-tagline">Delivery In Minutes</span>
+    </div>
+
+    <!-- Mobile Profile Icon -->
+    <a href="#" class="profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+    <!-- Search -->
+    <div class="search-container">
+        <input type="text"
+               placeholder="Search products..."
+               class="search-bar">
+    </div>
+
+    <!-- Desktop Login & Cart -->
+    <div class="nav-right">
+        <a href="#" class="login-btn">Login</a>
+        <a href="#" class="cart-btn">My Cart</a>
+    </div>
+
+</nav>
+<!-- PC Banner -->
+
+</body>
+</html>
