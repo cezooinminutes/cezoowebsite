@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEZOO</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#ffffff;
+    font-family:Arial, sans-serif;
+    min-height:150vh;
+
+    padding-top:100px;
+}
+
+/* NAVBAR */
+.navbar{
+    width:100%;
+    height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* LEFT LOGO SECTION */
+.brand{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-left:10px;
+    padding-right:20px;
+    border-right:1px solid #dcdcdc;
+}
+
+.brand-name{
+    font-family:'Bungee', cursive;
+    font-size:58px;
+    line-height:0.85;
+    color:#22c55e;
+}
+
+.brand-tagline{
+    margin-top:4px;
+    margin-left:8px; /* push right */
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#666;
+}
+
+/* RIGHT SIDE */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    margin-right:25px;
+}
+
+.login-btn{
+    text-decoration:none;
+    color:#111;
+    font-size:18px;
+    font-weight:600;
+}
+
+.cart-btn{
+    text-decoration:none;
+    background:#22c55e;
+    color:#fff;
+    padding:12px 24px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:700;
+}
+/* NAVBAR */
+.navbar{
+    width:100%;
+    min-height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+    padding-right:20px;
+}
+
+/* SEARCH */
+.search-container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    padding:0 30px;
+}
+
+.search-bar{
+    width:100%;
+    max-width:600px;
+    height:48px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:0 18px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-bar:focus{
+    border-color:#22c55e;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-wrap:wrap;
+        min-height:auto;
+        height:auto;
+        padding:10px;
+    }
+    .brand-name{
+        font-size:38px;
+    }
+
+    .brand-tagline{
+    font-size:11px;
+    margin-left:2px;
+}
+
+    .nav-right{
+        display:none;
+    }
+
+   .profile-icon{
+    display:block !important;
+    font-size:32px;
+    color:#22c55e;
+    margin-left:auto;
+}
+
+    .brand{
+        border-right:none;
+    }
+
+    .search-container{
+        flex:0 0 100%;
+        width:100%;
+        order:99;
+        margin-top:12px;
+        padding:0;
+    }
+
+    .search-bar{
+        width:100%;
+        max-width:none;
+    }
+}
+a{
+    text-decoration:none;
+}
+.profile-icon{ display:none; 
+    text-decoration:none; 
+    color:#22c55e; 
+    font-size:30px;
+margin-right:15px; }
+/* PC Banner */
+/* PC Banner */
+.pc-banner{
+    width:92%;
+    max-width:1400px;
+    height:350px;
+    margin:20px auto;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.pc-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* Hide banner on mobile */
+@media(max-width:768px){
+    .pc-banner{
+        display:none;
+    }
+}
+/* Desktop Cards */
+.desktop-cards{
+    width:92%;
+    max-width:1400px;
+    margin:25px auto;
+    display:flex;
+    gap:20px;
+}
+
+.desktop-cards .card{
+    flex:1;
+    height:200px;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.desktop-cards .card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* Hide on Mobile & Tablet */
+@media(max-width:768px){
+    .desktop-cards{
+        display:none;
+    }
+}
+/* Prevent horizontal scroll */
+html,
+body{
+    overflow-x:hidden;
+}
+
+/* Categories Grid */
+.categories{
+    width:92%;
+    max-width:1400px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    gap:15px;
+}
+
+/* Each Category */
+.category-item{
+    text-align:center;
+}
+
+/* Card only contains image */
+.category-card{
+    width:100%;
+    aspect-ratio:1/1;
+    background:#dff4ff; /* light blue */
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.category-card img{
+    width:80%;
+    height:80%;
+    object-fit:contain;
+}
+
+/* Text below card */
+.category-item p{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:500;
+    color:#222;
+}
+
+/* Mobile - 4 cards per row */
+@media(max-width:768px){
+
+    .categories{
+        width:95%;
+        grid-template-columns:repeat(4,1fr);
+        gap:10px;
+         margin-top:40px;
+    }
+
+    .category-card{
+        border-radius:12px;
+    }
+
+    .category-item p{
+        font-size:12px;
+    }
+}
+.footer{
+    width:100%;
+    background:#fff;
+    border-top:1px solid #e5e5e5;
+    padding:40px 0 20px;
+    margin-top:50px;
+}
+
+/* BRAND TOP (Blinkit style header inside footer) */
+.footer-brand{
+    width:92%;
+    max-width:1400px;
+    margin:auto;
+    margin-bottom:25px;
+}
+
+.footer-brand h2{
+    font-size:28px;
+    font-weight:800;
+    color:#22c55e;
+    font-family:Arial, sans-serif;
+    letter-spacing:1px;
+}
+
+.footer-brand p{
+    font-size:14px;
+    color:#666;
+    margin-top:4px;
+}
+
+/* MAIN GRID */
+.footer-container{
+    width:92%;
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:50px;
+}
+
+/* HEADINGS */
+.footer-box h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#111;
+    font-weight:700;
+}
+
+/* LINKS */
+.footer-box a{
+    display:block;
+    font-size:13px;
+    color:#555;
+    text-decoration:none;
+    margin-bottom:7px;
+    line-height:1.4;
+}
+
+.footer-box a:hover{
+    color:#22c55e;
+}
+
+/* BOTTOM */
+.footer-bottom{
+    width:92%;
+    max-width:1400px;
+    margin:30px auto 0;
+    text-align:center;
+    border-top:1px solid #eee;
+    padding-top:15px;
+    font-size:13px;
+    color:#777;
+}
+.footer-extra{
+    width:92%;
+    max-width:1400px;
+    margin:30px auto 0;
+    padding-top:15px;
+    border-top:1px solid #eee;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+/* COPYRIGHT */
+.footer-copy{
+    font-size:12px;
+    color:#777;
+}
+
+/* DOWNLOAD SECTION (BLINKIT STYLE INLINE) */
+.footer-download{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.download-text{
+    font-size:13px;
+    color:#444;
+    font-weight:500;
+}
+
+.store-links{
+    display:flex;
+    gap:10px;
+}
+
+.store-links a{
+    font-size:13px;
+    color:#22c55e;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.store-links a:hover{
+    text-decoration:underline;
+}
+
+/* SOCIAL */
+.footer-social i{
+    font-size:16px;
+    margin:0 6px;
+    color:#555;
+    cursor:pointer;
+}
+
+.footer-social i:hover{
+    color:#22c55e;
+}
+.footer-download{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.download-text{
+    font-size:13px;
+    color:#444;
+    font-weight:500;
+}
+
+/* STORE IMAGES */
+.store-images{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.store-images img{
+    height:32px;
+    width:auto;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.store-images img:hover{
+    transform:scale(1.05);
+}
+/* FIXED BADGE CONTAINER */
+.store-box{
+    width:130px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+/* base */
+.store-box{
+    width:140px;        /* SAME WIDTH */
+    height:45px;        /* SAME HEIGHT */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+/* BOTH IMAGES SAME STYLE */
+.store-badge{
+    width:100%;
+    height:100%;
+    object-fit:contain;   /* keeps proper ratio */
+    display:block;
+}
+@media(max-width:768px){
+    .footer-container{
+        display:none;
+    }
+}
+
+
+
+/* =========================
+   MOBILE ONLY
+   ========================= */
+
+/* MOBILE ONLY FOOTER BAR */
+@media only screen and (max-width:768px){
+
+    /* hide full desktop footer */
+    footer.footer{
+        display:none !important;
+    }
+
+    /* clean mobile footer strip like Blinkit */
+    .mobile-footer{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        position:fixed;
+        bottom:0;
+        left:0;
+        background:#fff;
+        border-top:1px solid #eee;
+        padding:12px 10px;
+        z-index:99999;
+    }
+
+    .mobile-footer p{
+        margin:0;
+        font-size:14px;
+        font-weight:500;
+        color:#333;
+    }
+
+    .mobile-footer span{
+        color:red;
+        margin-left:5px;
+    }
+
+    /* prevent overlap */
+    body{
+        padding-bottom:60px !important;
+    }
+}
+
+@media only screen and (max-width:768px){
+
+    footer.footer{
+        display:none !important;
+    }
+
+    .mobile-footer{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+
+        position:fixed;
+        bottom:0;
+        left:0;
+
+        width:100%;
+        background:#fff;
+        border-top:1px solid #eee;
+
+        padding:12px 15px;
+        z-index:99999;
+    }
+
+    .mobile-copy{
+        font-size:11px;
+        color:#666;
+    }
+
+    .mobile-plus-btn{
+        width:38px;
+        height:38px;
+
+        border:none;
+        border-radius:50%;
+
+        background:#22c55e;
+        color:#fff;
+
+        font-size:24px;
+        font-weight:700;
+
+        cursor:pointer;
+    }
+
+    body{
+        padding-bottom:70px !important;
+    }
+}
+/* Hide on Desktop */
+/* Hide on Desktop */
+.cezoo-mobile-bar{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .cezoo-mobile-bar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        width:100%;
+        padding:12px 15px;
+
+        border-top:1px solid #ddd;
+        background:#fff;
+    }
+
+    .cezoo-mobile-copy{
+        font-size:11px;
+        color:#666;
+    }
+
+    .cezoo-mobile-plus{
+        font-size:22px;
+        color:#333;
+    }
+}
+@media (max-width:768px){
+
+    html,
+    body{
+        min-height:auto !important;
+        height:auto !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+
+    .footer{
+        margin-bottom:0 !important;
+        padding-bottom:0 !important;
+    }
+
+    .cezoo-mobile-bar{
+        margin-bottom:0 !important;
+    }
+
+    *{
+        scroll-margin-bottom:0 !important;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <div class="brand">
+        <span class="brand-name">CEZOO</span>
+        <span class="brand-tagline">Delivery In Minutes</span>
+    </div>
+
+    <!-- Mobile Profile Icon -->
+    <a href="#" class="profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+    <!-- Search -->
+    <div class="search-container">
+        <input type="text"
+               placeholder="Search products..."
+               class="search-bar">
+    </div>
+
+    <!-- Desktop Login & Cart -->
+    <div class="nav-right">
+        <a href="#" class="login-btn">Login</a>
+        <a href="#" class="cart-btn">My Cart</a>
+    </div>
+
+</nav>
+<!-- PC Banner -->
+<div class="pc-banner">
+    <img src="banner.png" alt="Banner">
+</div>
+<!-- Desktop Cards -->
+<div class="desktop-cards">
+
+    <div class="card">
+        <img src="banner 1.png" alt="">
+    </div>
+
+    <div class="card">
+        <img src="baneer2.png" alt="">
+    </div>
+
+    <div class="card">
+        <img src="banner3.png" alt="">
+    </div>
+
+</div>
+<!-- Categories -->
+<div class="categories">
+<a href="pages/fruits.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/fuit.png" alt="">
+        </div>
+        <p>Fresh</p>
+    </div>
+</a>
+
+<a href="pages/vegatable.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/pindi.png" alt="">
+        </div>
+        <p>Pastries</p>
+    </div>
+</a>
+<a href="pages/dairy.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/dairy.png" alt="">
+        </div>
+        <p>Dairy</p>
+    </div>
+    </a>
+<a href="pages/meats.html">
+<div class="category-item">
+        <div class="category-card">
+            <img src="cat/meat.png" alt="">
+        </div>
+        <p>Meat And Sea Foods</p>
+    </div>
+    </a>
+    <a href="pages/oils.html">
+<div class="category-item">
+        <div class="category-card">
+            <img src="cat/oils.png" alt="">
+        </div>
+        <p>Oils</p>
+    </div>
+    </a>
+    <a href="pages/rice.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/rice.png" alt="">
+        </div>
+        <p>Rice</p>
+    </div>
+    </a>
+     <a href="pages/atta.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/attas.png" alt="">
+        </div>
+        <p>Atta</p>
+    </div>
+    </a>
+     <a href="pages/masals.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/masalas1.png" alt="">
+        </div>
+        <p>Masalas</p>
+    </div>
+     </a>
+      <a href="pages/snacks.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/sanacks.png" alt="">
+        </div>
+        <p>Snacks</p>
+    </div>
+    </a>
+<a href="pages/nuts.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/nuts.png" alt="">
+        </div>
+        <p>Nuts</p>
+    </div>
+    </a>
+    <a href="pages/cleaning.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/cleaning.png" alt="">
+        </div>
+        <p>Cleaning</p>
+    </div>
+    </a>
+    <a href="pages/cooldrinks.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/cool_drinks.png" alt="">
+        </div>
+        <p>Cool Drinks</p>
+    </div>
+    </a>
+    <a href="pages/lays.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/lays packets.png" alt="">
+        </div>
+        <p>Lays Packets</p>
+    </div>
+    </a>
+ <a href="pages/chocolates.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/choclates.png" alt="">
+        </div>
+        <p>Chocolates</p>
+    </div>
+    </a>
+    <a href="pages/nuts2.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/nuts.png" alt="">
+        </div>
+        <p>Nuts</p>
+    </div>
+    </a>
+    <a href="pages/skincare.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/skin care.png" alt="">
+        </div>
+        <p>Skin Care</p>
+    </div>
+    </a>
+    <a href="pages/soaps.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/soaps.png" alt="">
+        </div>
+        <p>Soaps</p>
+    </div>
+    </a>
+    <a href="pages/babycare.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/baby_care.png" alt="">
+        </div>
+        <p>Baby Care</p>
+    </div>
+    </a>
+    <a href="pages/instant.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/instant foods.png" alt="">
+        </div>
+        <p>Instant Foods</p>
+    </div>
+    </a>
+<a href="pages/stationary.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/stationary.png" alt="">
+        </div>
+        <p>Stationary</p>
+    </div>
+    </a>
+    <a href="pages/pooja.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/pooja_items.png" alt="">
+        </div>
+        <p>Pooja Items</p>
+    </div>
+    </a>
+    <a href="pages/groceries.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/groceries.png" alt="">
+        </div>
+        <p>Groceries</p>
+    </div>
+    </a>
+<a href="pages/ice.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/ice creams.png" alt="">
+        </div>
+        <p>Ice Cream</p>
+    </div>
+    </a>
+    <a href="pages/gift.html">
+    <div class="category-item">
+        <div class="category-card">
+            <img src="cat/gift items.png" alt="">
+        </div>
+        <p>Gift Items</p>
+    </div>
+    </a>
+</div>
+<!-- FOOTER -->
+<footer class="footer">
+
+    <!-- BRAND HEADER (Blinkit-style top line) -->
+    <div class="footer-brand">
+        <h2></h2>
+        <p></p>
+    </div>
+
+    <div class="footer-container">
+
+        <!-- USEFUL LINKS -->
+        <div class="footer-box">
+            <h3>Useful Links</h3>
+            <a href="#">Blog</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">FAQs</a>
+            <a href="#">Security</a>
+            <a href="#">Contact</a>
+            <a href="#">Partner</a>
+            <a href="#">Franchise</a>
+            <a href="#">Seller</a>
+            <a href="#">Warehouse</a>
+            <a href="#">Deliver</a>
+        </div>
+
+        <!-- RESOURCES -->
+        <div class="footer-box">
+            <h3>Resources</h3>
+            <a href="#">Recipes</a>
+            <a href="#">Bistro</a>
+            <a href="#">District</a>
+            <a href="#">Emergency Service</a>
+        </div>
+
+        <!-- CATEGORIES 1 -->
+        <div class="footer-box">
+            <h3>Categories</h3>
+            <a href="#">Vegetables & Fruits</a>
+            <a href="#">Dairy & Breakfast</a>
+            <a href="#">Munchies</a>
+            <a href="#">Cold Drinks & Juices</a>
+            <a href="#">Instant & Frozen Food</a>
+            <a href="#">Bakery & Biscuits</a>
+            <a href="#">Sweet Tooth</a>
+            <a href="#">Atta, Rice & Dal</a>
+            <a href="#">Dry Fruits, Masala & Oil</a>
+            <a href="#">Sauces & Spreads</a>
+            <a href="#">Chicken, Meat & Fish</a>
+        </div>
+
+        <!-- CATEGORIES 2 -->
+        <div class="footer-box">
+            <h3>More Categories</h3>
+            <a href="#">Paan Corner</a>
+            <a href="#">Organic & Premium</a>
+            <a href="#">Baby Care</a>
+            <a href="#">Pharma & Wellness</a>
+            <a href="#">Cleaning Essentials</a>
+            <a href="#">Home Decor</a>
+            <a href="#">Personal Care</a>
+            <a href="#">Pet Care</a>
+            <a href="#">Beauty & Cosmetics</a>
+            <a href="#">Electronics</a>
+            <a href="#">Stationery</a>
+            <a href="#">Books</a>
+            <a href="#">Toys & Games</a>
+            <a href="#">Gift Cards</a>
+        </div>
+
+    </div>
+<!-- FOOTER BOTTOM STRIP -->
+<div class="footer-extra">
+
+    <!-- COPYRIGHT -->
+    <div class="footer-copy">
+        © Cezonal Solutions Private Limited, 2026
+    </div>
+
+    <!-- DOWNLOAD APP (BLINKIT STYLE) -->
+   <div class="footer-download">
+
+    <span class="download-text">Download App</span>
+
+<div class="store-box">
+    <img src="app.png" alt="App Store" class="store-badge">
+</div>
+
+<div class="store-box">
+    <img src="play.png" alt="Play Store" class="store-badge">
+</div>
+
+</div>
+
+    <!-- SOCIAL -->
+    <div class="footer-social">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-twitter"></i>
+    </div>
+
+</div>
+</footer>
+
+<div class="cezoo-mobile-bar">
+    <div class="cezoo-mobile-copy">
+        © Cezonal Solutions Private Limited, 2026
+    </div>
+
+    <div class="cezoo-mobile-plus">+</div>
+</div>
+
+
+</body>
+
+</html>
