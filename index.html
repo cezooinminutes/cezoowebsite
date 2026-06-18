@@ -768,6 +768,219 @@ animation:shake .3s;
 25%{transform:translateX(-8px);}
 75%{transform:translateX(8px);}
 }
+.account-sheet{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    display:none;
+    z-index:99999;
+}
+
+.sheet-content{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background:#fff;
+    border-radius:25px 25px 0 0;
+    padding:20px;
+    animation:slideUp .25s ease;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+
+.sheet-line{
+    width:50px;
+    height:5px;
+    background:#ddd;
+    border-radius:20px;
+    margin:auto;
+    margin-bottom:20px;
+}
+
+.sheet-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px 0;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+}
+
+.sheet-item i{
+    width:25px;
+    color:#22c55e;
+}
+
+.logout{
+    color:red;
+}
+.side-menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    display:none;
+    z-index:99999;
+}
+
+.side-menu{
+    position:absolute;
+    top:0;
+    right:0;
+    width:280px;
+    height:100%;
+    background:#fff;
+
+    transform:translateX(100%);
+    transition:.3s ease;
+
+    padding:20px;
+}
+
+.side-menu-overlay.active .side-menu{
+    transform:translateX(0);
+}
+
+.menu-item{
+    padding:18px 0;
+    border-bottom:1px solid #eee;
+    font-size:16px;
+}
+
+.logout2{
+    color:red;
+}
+
+
+@media (max-width:768px){
+
+    html,
+    body{
+        min-height:auto !important;
+        height:auto !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+
+    .footer{
+        margin-bottom:0 !important;
+        padding-bottom:0 !important;
+    }
+
+    .cezoo-mobile-bar{
+        margin-bottom:0 !important;
+    }
+
+    *{
+        scroll-margin-bottom:0 !important;
+    }
+}
+@media (max-width:768px){
+
+    .mobile-footer-expand{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .5s ease;
+        background:#fff;
+        padding:0 15px;
+    }
+
+    .mobile-footer-expand.active{
+        max-height:3000px; /* enough height for all content */
+        padding:15px;
+    }
+
+    .mobile-footer-expand h3{
+        margin:15px 0 10px;
+        font-size:16px;
+        font-weight:700;
+    }
+
+    .mobile-footer-expand a{
+        display:block;
+        color:#555;
+        text-decoration:none;
+        margin-bottom:8px;
+        font-size:14px;
+    }
+
+    .mobile-footer-copy{
+        margin-top:20px;
+        font-size:13px;
+        color:#777;
+    }
+
+    .store-badge{
+        width:130px;
+        display:block;
+        margin:10px 0;
+    }
+
+    .cezoo-mobile-plus{
+        cursor:pointer;
+        font-size:24px;
+        font-weight:bold;
+    }
+}
+/* Hide mobile footer on PC */
+.cezoo-mobile-bar,
+.mobile-footer-expand{
+    display:none;
+}
+
+/* Show only on mobile */
+@media (max-width:768px){
+
+    .cezoo-mobile-bar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        width:100%;
+        padding:12px 15px;
+        background:#fff;
+        border-top:1px solid #ddd;
+    }
+
+    .mobile-footer-expand{
+        display:block;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .5s ease;
+        background:#fff;
+        padding:0 15px;
+    }
+
+    .mobile-footer-expand.active{
+        max-height:3000px;
+        padding:15px;
+    }
+}
+.download-apps{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+.store-badge{
+    width:130px;
+    height:auto;
+    display:block;
+}
+
+.mobile-footer-copy{
+    text-align:left;
+    font-size:13px;
+    color:#777;
+    padding:15px 0;
+    border-top:1px solid #e5e5e5;
+}
 </style>
 </head>
 <body>
@@ -795,7 +1008,7 @@ animation:shake .3s;
     <!-- Desktop Login & Cart -->
     <div class="nav-right">
         <a href="#" class="login-btn" onclick="openLoginPopup()">Login</a>
-        <a href="#" class="cart-btn">My Cart</a>
+        <a href="pages/fruits.html" class="cart-btn">My Cart</a>
     </div>
 
 </nav>
@@ -1198,10 +1411,150 @@ animation:shake .3s;
 
 </div>
 </div>
+<div class="account-sheet" id="accountSheet">
+
+    <div class="sheet-content">
+
+        <div class="sheet-line"></div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-box"></i>
+            <span>Your Orders</span>
+        </div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Addresses</span>
+        </div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-shield"></i>
+            <span>Privacy Policy</span>
+        </div>
+
+        <div class="sheet-item">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>About Us</span>
+        </div>
+
+        <div class="sheet-item logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </div>
+
+    </div>
+
+</div>
+<div class="side-menu-overlay" id="sideMenuOverlay">
+
+    <div class="side-menu">
+
+        <div class="menu-item">• Your Orders</div>
+        <div class="menu-item">• Addresses</div>
+        <div class="menu-item">• Saved Items</div>
+        <div class="menu-item">• Offers</div>
+        <div class="menu-item">• Privacy Policy</div>
+        <div class="menu-item">• About Us</div>
+
+        <div class="menu-item logout2">
+            • Logout
+        </div>
+
+    </div>
+
+</div>
+
+<div class="mobile-footer-expand">
+
+    <h3>Useful Links</h3>
+    <a href="pages/privacy.html">Privacy</a>
+    <a href="pages/terms.html">Terms</a>
+    <a href="pages/faq.html">FAQs</a>
+    <a href="pages/securtiy.html">Security</a>
+    <a href="pages/contact.html">Contact</a>
+    <a href="pages/partner.html">Partner</a>
+    <a href="pages/franchise.html">Franchise</a>
+    <a href="pages/seller.html">Seller</a>
+    <a href="pages/warehouse.html">Warehouse</a>
+    <a href="pages/deliver.html">Deliver</a>
+
+    <h3>Resources</h3>
+    <a href="pages/bistro.html">Bistro</a>
+    <a href="pages/district.html">District</a>
+
+    <h3>Categories</h3>
+         <div class="footer-box">
+            <a href="pages/vegatable.html">Vegetables & Fruits</a>
+            <a href="pages/dairy.html">Dairy & Breakfast</a>
+            <a href="pages/cooldrinks.html">Cold Drinks & Juices</a>
+            <a href="pages/instant.html">Instant & Frozen Food</a>
+            <a href="pages/bakery.html">Bakery & Biscuits</a>
+            <a href="pages/atta.html">Atta, Rice & Dal</a>
+            <a href="pages/masals.html">Dry Fruits, Masala & Oil</a>
+            <a href="pages/meats.html">Chicken, Meat & Fish</a>
+            <a href="pages/babycare.html">Baby Care</a>
+            <a href="pages/cleaning.html">Cleaning Essentials</a>
+            <a href="pages/skincare.html">Skin Care & Cosmetics</a>
+            <a href="pages/stationary.html">Stationery</a>
+            <a href="pages/gift.html">Gift Cards</a>
+        </div>
+  <h3>Download App</h3>
+
+<div class="download-apps">
+    <img src="cat/app1.jpeg" alt="App Store" class="store-badge">
+    <img src="cat/play1.jpeg" alt="Play Store" class="store-badge">
+</div>
+
+<div class="mobile-footer-copy">
+    ©️ Cezonal Solutions Private Limited, 2026
+</div>
+
 </body>
 <script>
 function openLoginPopup(){
+
+    if(localStorage.getItem("isLoggedIn")==="true"){
+
+        document.getElementById("sideMenuOverlay").style.display="block";
+
+        setTimeout(()=>{
+            document.getElementById("sideMenuOverlay").classList.add("active");
+        },10);
+
+        return;
+    }
+
     document.getElementById("loginPopup").style.display="flex";
+
+}
+document.getElementById("sideMenuOverlay").onclick=function(e){
+
+    if(e.target===this){
+
+        this.classList.remove("active");
+
+        setTimeout(()=>{
+            this.style.display="none";
+        },300);
+
+    }
+
+};
+document.querySelector(".logout2").onclick=function(){
+
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userPhone");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("otpMode");
+
+    location.reload();
+
+};
+
+if(localStorage.getItem("isLoggedIn")==="true"){
+
+    document.querySelector(".login-btn").innerHTML = "Account";
+
 }
 
 function closeLoginPopup(){
@@ -1326,6 +1679,66 @@ window.addEventListener("resize",()=>{
 
         }
 
+    }
+
+});
+if(localStorage.getItem("isLoggedIn")==="true"){
+
+    // Keep old icon unchanged
+
+    document.querySelector(".profile-icon").href="javascript:void(0)";
+
+    document.querySelector(".profile-icon").onclick=function(e){
+
+        e.preventDefault();
+
+        document.getElementById("accountSheet").style.display="block";
+
+    };
+
+}
+
+document.getElementById("accountSheet").onclick=function(e){
+
+    if(e.target===this){
+        this.style.display="none";
+    }
+
+};
+
+document.querySelector(".logout").onclick=function(){
+
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userPhone");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("otpMode");
+
+    location.reload();
+
+};
+if(window.innerWidth > 768){
+    document.getElementById("accountSheet").style.display="none";
+}
+
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth > 768){
+        document.getElementById("accountSheet").style.display="none";
+    }
+
+});
+
+const plusBtn = document.querySelector(".cezoo-mobile-plus");
+const mobileFooter = document.querySelector(".mobile-footer-expand");
+
+plusBtn.addEventListener("click", function(){
+
+    mobileFooter.classList.toggle("active");
+
+    if(mobileFooter.classList.contains("active")){
+        plusBtn.textContent = "−";
+    }else{
+        plusBtn.textContent = "+";
     }
 
 });
