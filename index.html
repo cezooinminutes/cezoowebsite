@@ -641,6 +641,133 @@ body{
         scroll-margin-bottom:0 !important;
     }
 }
+.login-popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.login-card{
+    width:90%;
+    max-width:400px;
+    background:#fff;
+    border-radius:22px;
+    padding:25px;
+    position:relative;
+}
+
+.close-popup{
+    position:absolute;
+    right:18px;
+    top:15px;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.login-section{
+    font-family:'Inter',sans-serif;
+    text-align:center;
+}
+
+.login-logo{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    margin-bottom:12px;
+    animation:floatLogo 2s infinite;
+}
+
+
+
+.login-section h2{
+    font-size:28px;
+    color:#111;
+    margin-bottom:18px;
+}
+
+.phone-input{
+    display:flex;
+    align-items:center;
+    border:1px solid #ddd;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.country-code{
+    padding:0 15px;
+    font-size:16px;
+    font-weight:600;
+}
+
+.phone-input input{
+    flex:1;
+    height:52px;
+    border:none;
+    outline:none;
+    font-size:16px;
+}
+
+.login-section button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    background:#FFD600;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.otp-boxes{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.otp-input{
+    width:45px;
+    height:55px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+}
+
+.change-btn,
+.resend-btn{
+    background:none!important;
+    color:#333;
+    margin-top:15px;
+}
+
+.terms{
+    margin-top:12px;
+    font-size:12px;
+    color:#777;
+}
+
+.terms a{
+    color:#333;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.shake{
+animation:shake .3s;
+}
+
+@keyframes shake{
+0%,100%{transform:translateX(0);}
+25%{transform:translateX(-8px);}
+75%{transform:translateX(8px);}
+}
 </style>
 </head>
 <body>
@@ -654,9 +781,9 @@ body{
     </div>
 
     <!-- Mobile Profile Icon -->
-    <a href="#" class="profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </a>
+   <a href="pages/login.html" class="profile-icon">
+    <i class="fa-solid fa-user"></i>
+</a>
 
     <!-- Search -->
     <div class="search-container">
@@ -667,7 +794,7 @@ body{
 
     <!-- Desktop Login & Cart -->
     <div class="nav-right">
-        <a href="#" class="login-btn">Login</a>
+        <a href="#" class="login-btn" onclick="openLoginPopup()">Login</a>
         <a href="#" class="cart-btn">My Cart</a>
     </div>
 
@@ -1002,7 +1129,206 @@ body{
     <div class="cezoo-mobile-plus">+</div>
 </div>
 
+<div class="login-popup" id="loginPopup">
 
+<div class="login-card">
+
+    <span class="close-popup" onclick="closeLoginPopup()">✕</span>
+
+<div class="login-section">
+
+    <img src="pages/logocezoo.jpeg" alt="CEZOO" class="login-logo">
+
+    <p class="tagline"></p>
+
+    <h2 id="title">Log in or Sign up</h2>
+
+    <!-- Phone Screen -->
+    <div id="phoneScreen">
+
+        <div class="phone-input">
+
+            <span class="country-code">+91</span>
+
+            <input
+                type="tel"
+                id="phoneInput"
+                maxlength="10"
+                placeholder="Enter your 10 digit number">
+
+        </div>
+
+        <button onclick="showOtp()">
+            Continue
+        </button>
+
+    </div>
+
+    <!-- OTP Screen -->
+    <div id="otpScreen" style="display:none;">
+
+        <button class="change-btn" onclick="backToPhone()">
+            Change Number
+        </button>
+
+        <div class="otp-boxes">
+
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+            <input maxlength="1" class="otp-input">
+
+        </div>
+
+        <button class="resend-btn">
+            Resend OTP
+        </button>
+
+    </div>
+
+    <p class="terms">
+        By continuing, you agree to our
+        <a href="#">Terms of service</a> &
+        <a href="#">Privacy policy</a>
+    </p>
+
+</div>
+
+</div>
+</div>
 </body>
+<script>
+function openLoginPopup(){
+    document.getElementById("loginPopup").style.display="flex";
+}
+
+function closeLoginPopup(){
+
+    document.getElementById("loginPopup").style.display="none";
+
+    document.getElementById("phoneScreen").style.display="block";
+    document.getElementById("otpScreen").style.display="none";
+    document.getElementById("title").innerHTML="Log in or Sign up";
+
+    boxes.forEach(box=>{
+        box.value="";
+    });
+
+}
+
+const boxes=document.querySelectorAll(".otp-input");
+
+boxes.forEach((box,index)=>{
+
+box.addEventListener("input",()=>{
+
+if(box.value && index<5){
+boxes[index+1].focus();
+}
+
+let otp="";
+boxes.forEach(b=>otp+=b.value);
+
+if(otp.length===6){
+
+if(otp==="123456"){
+
+    localStorage.setItem("isLoggedIn","true");
+    localStorage.setItem(
+        "userPhone",
+        localStorage.getItem("phoneNumber")
+    );
+
+    // Reset popup to phone screen
+    document.getElementById("phoneScreen").style.display="block";
+    document.getElementById("otpScreen").style.display="none";
+    document.getElementById("title").innerHTML="Log in or Sign up";
+
+    // Clear OTP boxes
+    boxes.forEach(box=>{
+        box.value="";
+    });
+
+    // Close popup
+    document.getElementById("loginPopup").style.display="none";
+
+}
+else{
+
+document.querySelector(".otp-boxes").classList.add("shake");
+
+setTimeout(()=>{
+
+document.querySelector(".otp-boxes").classList.remove("shake");
+
+boxes.forEach(box=>box.value="");
+
+boxes[0].focus();
+
+},300);
+
+}
+
+}
+
+});
+
+});
+
+function showOtp(){
+
+let phone=document.getElementById("phoneInput");
+
+if(phone.value.length!=10){
+
+document.querySelector(".phone-input").classList.add("shake");
+
+setTimeout(()=>{
+document.querySelector(".phone-input").classList.remove("shake");
+},300);
+
+return;
+}
+
+localStorage.setItem("phoneNumber",phone.value);
+
+document.getElementById("phoneScreen").style.display="none";
+document.getElementById("otpScreen").style.display="block";
+
+document.getElementById("title").innerHTML="Enter OTP";
+
+boxes[0].focus();
+
+}
+
+function backToPhone(){
+
+document.getElementById("phoneScreen").style.display="block";
+
+document.getElementById("otpScreen").style.display="none";
+
+document.getElementById("title").innerHTML="Log in or Sign up";
+
+boxes.forEach(box=>box.value="");
+
+}
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth <= 768){
+
+        if(document.getElementById("loginPopup").style.display==="flex"){
+
+            closeLoginPopup();
+
+            window.location.href="pages/login.html";
+
+        }
+
+    }
+
+});
+</script>
 
 </html>
